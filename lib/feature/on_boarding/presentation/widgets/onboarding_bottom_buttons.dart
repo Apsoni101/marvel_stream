@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:marvel_stream/core/constants/app_colors.dart';
 import 'package:marvel_stream/core/constants/app_strings.dart';
 import 'package:marvel_stream/core/controller/onboarding_page_controller.dart';
+import 'package:marvel_stream/feature/common/presentation/widgets/signup_login_button.dart';
 import 'package:marvel_stream/feature/on_boarding/presentation/widgets/continue_button.dart';
-import 'package:marvel_stream/feature/on_boarding/presentation/widgets/signup_login_button.dart';
 
 class OnboardingBottomButtons extends StatelessWidget {
   const OnboardingBottomButtons({

@@ -7,3 +7,12 @@ sealed class MovieDetailEvent extends Equatable {
   @override
   List<Object?> get props => <Object?>[];
 }
+
+class LoadMovieTrailer extends MovieDetailEvent {
+
+  const LoadMovieTrailer(this.url);
+  final String url;
+
+  @override
+  List<Object?> get props => <Object?>[url];
+}
