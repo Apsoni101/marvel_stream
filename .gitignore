@@ -130,6 +130,72 @@ lcov.info
 .env
 .env.local
 .env.*.local
+# iOS generated files
+ios/**/xcuserdata/
+ios/**/profile/
+ios/**/GeneratedPluginRegistrant.*
+ios/**/Flutter/GeneratedPluginRegistrant.h
+ios/**/Flutter/GeneratedPluginRegistrant.m
+ios/**/Flutter/flutter_export_environment.sh
+ios/**/Flutter/flutter_assets/
 
+# Xcode workspace files
+ios/**/*.xcworkspace/
+ios/**/xcshareddata/
+ios/**/xcschemes/
+ios/**/workspace-state.json
+
+# Xcode user-specific files
+ios/**/*.xcodeproj/xcuserdata/
+ios/**/*.xcworkspace/xcuserdata/
 # Web
 web/.last_build_id
+# Android
+/android/.gradle/
+/android/.idea/
+/android/local.properties
+/android/build/
+/android/app/build/
+
+# iOS
+/ios/Pods/
+/ios/.symlinks/
+/ios/Flutter/Flutter.framework/
+/ios/Flutter/Flutter.podspec
+/ios/Flutter/Generated.xcconfig
+/ios/Flutter/App.framework/
+/ios/build/
+/ios/Runner.xcworkspace/
+/ios/.generated/
+/ios/Flutter/ephemeral/
+
+# macOS
+/macos/Flutter/ephemeral/
+/macos/build/
+/macos/Runner.xcworkspace/
+/macos/.generated/
+/macos/.DS_Store
+
+# Windows
+/windows/build/
+/windows/.vs/
+/windows/.idea/
+/windows/runner/Debug/
+/windows/runner/Release/
+/windows/flutter/generated_plugin_registrant.*
+
+# Web (if you later use it)
+/web/build/
+/web/generated/
+
+# Linux (if used)
+/linux/build/
+/linux/.idea/
+/linux/flutter/generated_plugin_registrant.*
+
+*.tmp
+*.DS_Store
+*.apk
+*.aar
+*.ipa
+*.dSYM
