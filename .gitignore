@@ -45,3 +45,157 @@ app.*.map.json
 /android/app/release
 
 
+# General
+
+*.swo
+
+*.pub-cache/
+*.pub/
+build/
+.packages
+.fvm/
+*.lock
+.vscode/
+*.code-workspace
+
+# Android
+android/.gradle/
+android/local.properties
+android/**/gradle-app.setting
+android/gradlew
+android/gradlew.bat
+android/**/Build/
+android/**/build/
+android/**/.cxx/
+android/app/release/
+android/app/debug/
+android/app/profile/
+
+# iOS
+ios/.symlinks/
+ios/Flutter/Flutter.podspec
+ios/Pods/
+ios/**/.symlinks/
+ios/**/Pods/
+ios/**/build/
+ios/**/DerivedData/
+ios/**/Generated.xcconfig
+ios/**/Flutter/App.framework/
+ios/**/Flutter/Flutter.framework/
+ios/**/Flutter/Flutter.podspec
+ios/**/Flutter/GeneratedPluginRegistrant.*
+
+# macOS
+macos/.symlinks/
+macos/Flutter/Flutter.podspec
+macos/Pods/
+macos/**/.symlinks/
+macos/**/Pods/
+macos/**/build/
+macos/**/DerivedData/
+macos/**/Generated.xcconfig
+macos/**/Flutter/App.framework/
+macos/**/Flutter/Flutter.framework/
+macos/**/Flutter/Flutter.podspec
+macos/**/Flutter/GeneratedPluginRegistrant.*
+
+# Windows
+windows/.vs/
+windows/**/build/
+windows/**/Debug/
+windows/**/Release/
+windows/**/x64/
+windows/**/x86/
+windows/**/CMakeSettings.json
+windows/**/CMakeCache.txt
+windows/**/CMakeFiles/
+windows/**/flutter/Flutter.dll
+windows/**/flutter/Flutter.lib
+windows/**/flutter/Flutter.exp
+windows/**/flutter/Flutter.pdb
+
+# Build Runner
+*.g.dart
+*.freezed.dart
+*.gr.dart
+*.inject.summary
+*.inject.dart
+*.reflectable.dart
+
+# Coverage
+coverage/
+lcov.info
+
+# Environment
+.env
+.env.local
+.env.*.local
+# iOS generated files
+ios/**/xcuserdata/
+ios/**/profile/
+ios/**/GeneratedPluginRegistrant.*
+ios/**/Flutter/GeneratedPluginRegistrant.h
+ios/**/Flutter/GeneratedPluginRegistrant.m
+ios/**/Flutter/flutter_export_environment.sh
+ios/**/Flutter/flutter_assets/
+
+# Xcode workspace files
+ios/**/*.xcworkspace/
+ios/**/xcshareddata/
+ios/**/xcschemes/
+ios/**/workspace-state.json
+
+# Xcode user-specific files
+ios/**/*.xcodeproj/xcuserdata/
+ios/**/*.xcworkspace/xcuserdata/
+# Web
+web/.last_build_id
+# Android
+/android/.gradle/
+/android/.idea/
+/android/local.properties
+/android/build/
+/android/app/build/
+
+# iOS
+/ios/Pods/
+/ios/.symlinks/
+/ios/Flutter/Flutter.framework/
+/ios/Flutter/Flutter.podspec
+/ios/Flutter/Generated.xcconfig
+/ios/Flutter/App.framework/
+/ios/build/
+/ios/Runner.xcworkspace/
+/ios/.generated/
+/ios/Flutter/ephemeral/
+
+# macOS
+/macos/Flutter/ephemeral/
+/macos/build/
+/macos/Runner.xcworkspace/
+/macos/.generated/
+/macos/.DS_Store
+
+# Windows
+/windows/build/
+/windows/.vs/
+/windows/.idea/
+/windows/runner/Debug/
+/windows/runner/Release/
+/windows/flutter/generated_plugin_registrant.*
+
+# Web (if you later use it)
+/web/build/
+/web/generated/
+
+# Linux (if used)
+/linux/build/
+/linux/.idea/
+/linux/flutter/generated_plugin_registrant.*
+
+*.tmp
+*.DS_Store
+*.apk
+*.aar
+*.ipa
+*.dSYM
