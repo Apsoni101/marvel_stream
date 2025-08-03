@@ -16,9 +16,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Future<void>.delayed(const Duration(seconds: 3), () {
+    Future<void>.delayed(const Duration(seconds: 3), () async {
       if (mounted) {
-        context.router.replaceAll([const OnboardingRoute()]);
+        await context.router.replaceAll(<PageRouteInfo<Object?>>[
+          const DashboardRoute(),
+        ]);
       }
     });
   }

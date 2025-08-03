@@ -25,6 +25,6 @@ class SignupLoginButton extends StatelessWidget {
       side: side,
       padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 108),
     ),
-    child:  Text(text, style: AppTextStyles.continueTxtStyle),
+    child: Text(text, style: AppTextStyles.continueTxtStyle),
   );
 }
