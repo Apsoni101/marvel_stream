@@ -30,10 +30,10 @@ import 'package:marvel_stream/feature/home/presentation/screens/home_screen.dart
     as _i6;
 import 'package:marvel_stream/feature/more/presentation/screens/more_screen.dart'
     as _i7;
-import 'package:marvel_stream/feature/movie/presentation/screens/movie_detail_screen.dart' as _i8;
+import 'package:marvel_stream/feature/movie/presentation/screens/movie_detail_screen.dart'
+    as _i8;
 import 'package:marvel_stream/feature/on_boarding/presentation/screens/onboarding_screen.dart'
     as _i9;
-
 import 'package:marvel_stream/feature/splash/presentation/screens/splash_screen.dart'
     as _i12;
 
@@ -54,17 +54,17 @@ class AuthRouter extends _i13.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i2.CategoriesScreen]
-class CategoriesRoute extends _i13.PageRouteInfo<void> {
-  const CategoriesRoute({List<_i13.PageRouteInfo>? children})
-    : super(CategoriesRoute.name, initialChildren: children);
+/// [_i2.ComicsScreen]
+class ComicsRoute extends _i13.PageRouteInfo<void> {
+  const ComicsRoute({List<_i13.PageRouteInfo>? children})
+    : super(ComicsRoute.name, initialChildren: children);
 
-  static const String name = 'CategoriesRoute';
+  static const String name = 'ComicsRoute';
 
   static _i13.PageInfo page = _i13.PageInfo(
     name,
     builder: (data) {
-      return const _i2.CategoriesScreen();
+      return const _i2.ComicsScreen();
     },
   );
 }
@@ -198,18 +198,51 @@ class MovieDetailRouteArgs {
 
 /// generated route for
 /// [_i9.OnboardingScreen]
-class OnboardingRoute extends _i13.PageRouteInfo<void> {
-  const OnboardingRoute({List<_i13.PageRouteInfo>? children})
-    : super(OnboardingRoute.name, initialChildren: children);
+class OnboardingRoute extends _i13.PageRouteInfo<OnboardingRouteArgs> {
+  OnboardingRoute({
+    _i15.Key? key,
+    _i15.VoidCallback? onLoggedIn,
+    List<_i13.PageRouteInfo>? children,
+  }) : super(
+         OnboardingRoute.name,
+         args: OnboardingRouteArgs(key: key, onLoggedIn: onLoggedIn),
+         initialChildren: children,
+       );
 
   static const String name = 'OnboardingRoute';
 
   static _i13.PageInfo page = _i13.PageInfo(
     name,
     builder: (data) {
-      return const _i9.OnboardingScreen();
+      final args = data.argsAs<OnboardingRouteArgs>(
+        orElse: () => const OnboardingRouteArgs(),
+      );
+      return _i9.OnboardingScreen(key: args.key, onLoggedIn: args.onLoggedIn);
     },
   );
+}
+
+class OnboardingRouteArgs {
+  const OnboardingRouteArgs({this.key, this.onLoggedIn});
+
+  final _i15.Key? key;
+
+  final _i15.VoidCallback? onLoggedIn;
+
+  @override
+  String toString() {
+    return 'OnboardingRouteArgs{key: $key, onLoggedIn: $onLoggedIn}';
+  }
+
+  @override
+  bool operator ==(Object other) {
+    if (identical(this, other)) return true;
+    if (other is! OnboardingRouteArgs) return false;
+    return key == other.key && onLoggedIn == other.onLoggedIn;
+  }
+
+  @override
+  int get hashCode => key.hashCode ^ onLoggedIn.hashCode;
 }
 
 /// generated route for

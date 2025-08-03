@@ -11,6 +11,11 @@ final AutoRoute authRoute = AutoRoute(
   page: AuthRouter.page,
   path: RoutePaths.auth,
   children: <AutoRoute>[
+    AutoRoute(
+      page: OnboardingRoute.page,
+      path: RoutePaths.onBoardingScreen,
+      initial: true,
+    ),
     AutoRoute(page: SignInRoute.page, path: RoutePaths.login),
     AutoRoute(page: SignUpRoute.page, path: RoutePaths.signup),
   ],

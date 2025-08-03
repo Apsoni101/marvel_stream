@@ -11,7 +11,9 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 @RoutePage()
 class OnboardingScreen extends StatefulWidget {
-  const OnboardingScreen({super.key});
+  const OnboardingScreen({super.key, this.onLoggedIn});
+
+  final VoidCallback? onLoggedIn;
 
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();
@@ -106,6 +108,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           Expanded(
             flex: 2,
             child: OnboardingBottomButtons(
+              onLoggedIn: widget.onLoggedIn,
               pageController: _onboardingPageController,
               onContinue: _goToNextPage,
             ),

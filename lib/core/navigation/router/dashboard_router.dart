@@ -18,7 +18,7 @@ AutoRoute dashboardRoute(final AuthGuard authGuard) => AutoRoute(
       initial: true,
       children: <AutoRoute>[
         AutoRoute(page: HomeRoute.page, path: RoutePaths.home, initial: true),
-        AutoRoute(page: CategoriesRoute.page, path: RoutePaths.categories),
+        AutoRoute(page: ComicsRoute.page, path: RoutePaths.categories),
         AutoRoute(page: DownloadsRoute.page, path: RoutePaths.downloads),
         AutoRoute(page: MoreRoute.page, path: RoutePaths.more),
       ],
