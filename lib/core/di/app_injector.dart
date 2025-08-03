@@ -17,6 +17,11 @@ import 'package:marvel_stream/feature/home/data/repositories/movie_list_repo_imp
 import 'package:marvel_stream/feature/home/domain/repositories/movie_list_repo.dart';
 import 'package:marvel_stream/feature/home/domain/use_cases/movies_use_case.dart';
 import 'package:marvel_stream/feature/home/presentation/bloc/movies_bloc.dart';
+import 'package:marvel_stream/feature/more/data/data_sources/more_remote_data_source.dart';
+import 'package:marvel_stream/feature/more/data/repositories/more_repository_impl.dart';
+import 'package:marvel_stream/feature/more/domain/repositories/more_repository.dart';
+import 'package:marvel_stream/feature/more/domain/use_cases/more_usecase.dart';
+import 'package:marvel_stream/feature/more/presentation/bloc/more_bloc.dart';
 import 'package:marvel_stream/feature/movie/presentation/bloc/movie_detail_bloc.dart';
 
 class AppInjector {
@@ -72,10 +77,24 @@ class AppInjector {
       ..registerLazySingleton<MoviesUseCase>(
         () => MoviesUseCase(repository: getIt<MovieListRepository>()),
       )
+      ..registerFactory(() => MoviesBloc(moviesUseCase: getIt<MoviesUseCase>()))
+      ..registerFactory(MovieDetailBloc.new)
+
+      //More feature
+      ..registerLazySingleton<MoreRemoteDataSource>(
+        () => MoreRemoteDataSourceImpl(
+          firebaseAuthService: getIt<FirebaseAuthService>(),
+        ),
+      )
+      ..registerLazySingleton<MoreRepository>(
+        () =>
+            MoreRepositoryImpl(remoteDataSource: getIt<MoreRemoteDataSource>()),
+      )
+      ..registerLazySingleton<MoreRepositoryUseCase>(
+        () => MoreRepositoryUseCase(getIt<MoreRepository>()),
+      )
       ..registerFactory(
-        () => MoviesBloc(moviesUseCase: getIt<MoviesUseCase>()),
-      )..registerFactory(
-        MovieDetailBloc.new,
+        () => MoreBloc(moreRepositoryUseCase: getIt<MoreRepositoryUseCase>()),
       );
   }
 }

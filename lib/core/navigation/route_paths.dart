@@ -1,6 +1,6 @@
 class RoutePaths{
   static const String splash="/";
-  static const String onBoardingScreen="/onboarding";
+  static const String onBoardingScreen="onboarding";
   static const String login = 'login';
   static const String dashboard = '/dashboardRouter';
   static const String signup = 'signup';

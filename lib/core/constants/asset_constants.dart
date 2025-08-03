@@ -16,4 +16,6 @@ class AppAssets {
   static const String spiderManProfileIc = "assets/icons/spiderman_profile.svg";
   static const String bookmarkIc = "assets/icons/bookmark.png";
   static const String arrowCircleRight = "assets/icons/arrow_circle_right.png";
+  static const String circularAvatarBg = "assets/images/circular_bg.png";
+  static const String avatar1 = "assets/images/spiderman_avatar.png";
 }

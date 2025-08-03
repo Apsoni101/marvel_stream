@@ -2,11 +2,11 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 
 @RoutePage()
-class CategoriesScreen extends StatelessWidget {
-  const CategoriesScreen({super.key});
+class ComicsScreen extends StatelessWidget {
+  const ComicsScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const Center(child: Text("Categories Screen"));
+    return const Center(child: Text("Comics Screen"));
   }
 }

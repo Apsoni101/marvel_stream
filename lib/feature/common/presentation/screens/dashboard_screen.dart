@@ -14,7 +14,7 @@ class DashboardScreen extends StatelessWidget {
   Widget build(final BuildContext context) => AutoTabsScaffold(
     routes: const <PageRouteInfo<Object?>>[
       HomeRoute(),
-      CategoriesRoute(),
+      ComicsRoute(),
       DownloadsRoute(),
       MoreRoute(),
     ],

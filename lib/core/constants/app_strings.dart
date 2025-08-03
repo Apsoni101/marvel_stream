@@ -55,4 +55,13 @@ class AppStrings {
   static const String imdbId = '🎬 IMDB ID:';
   static const String lastUpdated = '🗓️ Last Updated:';
   static const String trailerNA = '🎬 Trailer Not Available';
+  static const String account = 'Account';
+  static const String settings = 'Settings';
+  static const String legal = 'Legal';
+  static const String support = 'Support';
+  static const String privacySettings = 'Privacy Settings';
+  static const String parentalControl = 'Parental Control';
+
+  // Actions
+  static const String signOut = 'Sign Out';
 }
