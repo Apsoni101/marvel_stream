@@ -19,7 +19,7 @@ import 'package:marvel_stream/feature/common/presentation/widgets/signup_login_b
 class SignInScreen extends StatefulWidget {
   const SignInScreen({super.key, this.onLoggedIn});
 
-  final VoidCallback? onLoggedIn;
+  final Future<void> Function({bool isFromSignup})? onLoggedIn;
 
   @override
   State<SignInScreen> createState() => _SignInScreenState();

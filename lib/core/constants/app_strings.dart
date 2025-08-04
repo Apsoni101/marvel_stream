@@ -25,7 +25,7 @@ class AppStrings {
   static const String passwordEmptyError = "Password can't be empty";
   static const String loginSuccess = "Success";
   static const String home = 'Home';
-  static const String categories = 'Categories';
+  static const String comics = 'Comics';
   static const String downloads = 'Downloads';
   static const String download = 'Download';
   static const String more = 'More';
