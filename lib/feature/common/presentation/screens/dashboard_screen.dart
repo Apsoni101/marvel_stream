@@ -15,7 +15,7 @@ class DashboardScreen extends StatelessWidget {
     routes: const <PageRouteInfo<Object?>>[
       HomeRoute(),
       ComicsRoute(),
-      DownloadsRoute(),
+      CharactersRoute(),
       MoreRoute(),
     ],
     bottomNavigationBuilder:
@@ -61,7 +61,7 @@ class DashboardScreen extends StatelessWidget {
                   BlendMode.srcIn,
                 ),
               ),
-              label: AppStrings.downloads,
+              label: AppStrings.characters,
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(

@@ -1,31 +1,20 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:marvel_stream/core/services/error/failure.dart';
-import 'package:marvel_stream/core/services/networking/network_constants.dart';
+import 'package:marvel_stream/core/services/networking/api_client.dart';
 
 class NetworkService {
-  NetworkService({final Dio? dio})
-    : dio =
-          dio ??
-          Dio(
-            BaseOptions(
-              baseUrl: NetworkConstants.baseUrl,
-              receiveTimeout: NetworkConstants.receiveTimeout,
-              connectTimeout: NetworkConstants.connectTimeout,
-            ),
-          ) {
-    this.dio.interceptors.add(LogInterceptor(responseBody: true,requestBody: true,error: true));
-  }
+  NetworkService({required this.apiClient});
 
-  final Dio dio;
+  final ApiClient apiClient;
 
   Future<Either<Failure, T>> getPath<T>(
-      final String path, {
-        required final T Function(dynamic data) parser,
-        final Map<String, dynamic>? queryParams,
-      }) async {
+    final String path, {
+    required final T Function(dynamic data) parser,
+    final Map<String, dynamic>? queryParams,
+  }) async {
     try {
-      final Response<dynamic> response = await dio.get(
+      final Response<dynamic> response = await apiClient.dio.get(
         path,
         queryParameters: queryParams,
       );
@@ -43,7 +32,6 @@ class NetworkService {
       return Left<Failure, T>(Failure("Unexpected error: $e"));
     }
   }
-
 
   Failure? _handleStatusCode(final int? statusCode) {
     switch (statusCode) {
