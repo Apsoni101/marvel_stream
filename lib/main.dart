@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:marvel_stream/core/constants/app_colors.dart';
+import 'package:marvel_stream/core/constants/app_strings.dart';
 import 'package:marvel_stream/core/di/app_injector.dart';
 import 'package:marvel_stream/core/navigation/app_router.dart';
 import 'package:marvel_stream/core/services/firebase/crashlytics_service.dart';
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
   Widget build(final BuildContext context) {
     final AppRouter appRouter=AppRouter();
     return MaterialApp.router(
-      title: 'Flutter Demo',
+      title: AppStrings.appName,
       debugShowCheckedModeBanner: false,
 
       theme: ThemeData(

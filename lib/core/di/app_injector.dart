@@ -3,6 +3,7 @@ import 'package:marvel_stream/core/navigation/auth_guard.dart';
 import 'package:marvel_stream/core/services/firebase/crashlytics_service.dart';
 import 'package:marvel_stream/core/services/firebase/firebase_auth_service.dart';
 import 'package:marvel_stream/core/services/firebase/firebase_firestore_service.dart';
+import 'package:marvel_stream/core/services/networking/api_client.dart';
 import 'package:marvel_stream/core/services/networking/network_service.dart';
 import 'package:marvel_stream/core/services/storage/shared_prefs_service.dart';
 import 'package:marvel_stream/feature/auth/data/data_sources/auth_local_data_source.dart';
@@ -36,7 +37,26 @@ class AppInjector {
       ..registerLazySingleton(FirebaseAuthService.new)
       ..registerLazySingleton(FirebaseFirestoreService.new)
       ..registerLazySingleton(CrashlyticsService.new)
-      ..registerLazySingleton(NetworkService.new)
+      ..registerLazySingleton<ApiClient>(
+        ApiClient.marvelMovie,
+        instanceName: 'movieClient',
+      )
+      ..registerLazySingleton<ApiClient>(
+        ApiClient.marvelComics,
+        instanceName: 'comicsClient',
+      )
+      ..registerLazySingleton<NetworkService>(
+        () => NetworkService(
+          apiClient: getIt<ApiClient>(instanceName: 'movieClient'),
+        ),
+        instanceName: 'movieNetworkService',
+      )
+      ..registerLazySingleton<NetworkService>(
+        () => NetworkService(
+          apiClient: getIt<ApiClient>(instanceName: 'comicsClient'),
+        ),
+        instanceName: 'comicsNetworkService',
+      )
       // Auth Feature
       ..registerLazySingleton<AuthGuard>(
         () => AuthGuard(firebaseAuthService: getIt<FirebaseAuthService>()),
@@ -66,7 +86,9 @@ class AppInjector {
       //home feature
       ..registerLazySingleton<MovieListRemoteDataSource>(
         () => MovieListRemoteDataSourceImpl(
-          networkService: getIt<NetworkService>(),
+          networkService: getIt<NetworkService>(
+            instanceName: 'movieNetworkService',
+          ),
         ),
       )
       ..registerLazySingleton<MovieListRepository>(
@@ -79,7 +101,6 @@ class AppInjector {
       )
       ..registerFactory(() => MoviesBloc(moviesUseCase: getIt<MoviesUseCase>()))
       ..registerFactory(MovieDetailBloc.new)
-
       //More feature
       ..registerLazySingleton<MoreRemoteDataSource>(
         () => MoreRemoteDataSourceImpl(

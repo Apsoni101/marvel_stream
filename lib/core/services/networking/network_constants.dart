@@ -1,5 +1,6 @@
 class NetworkConstants {
-  static const String baseUrl = 'https://mcuapi.up.railway.app/api/v1/';
+  static const String baseUrlMovies = 'https://mcuapi.up.railway.app/api/v1/';
+  static const String baseUrlComics = 'https://gateway.marvel.com/v1/public';
   static const String moviesEndpoint = '/movies';
   static const String movies = 'movies';
   static const String movie = 'movie';

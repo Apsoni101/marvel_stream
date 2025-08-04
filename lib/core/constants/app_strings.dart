@@ -1,4 +1,6 @@
 class AppStrings {
+
+  static const String appName = "Marvel Stream";
   static const String continueTxt = "Continue";
   static const String onboardingTxt1 =
       "All your favourite \nMARVEL Movies & Series \nat one place\n";
@@ -26,7 +28,7 @@ class AppStrings {
   static const String loginSuccess = "Success";
   static const String home = 'Home';
   static const String comics = 'Comics';
-  static const String downloads = 'Downloads';
+  static const String characters = 'Characters';
   static const String download = 'Download';
   static const String more = 'More';
   static const String details = 'Details';
