@@ -13,7 +13,7 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key, this.onLoggedIn});
 
-  final VoidCallback? onLoggedIn;
+  final Future<void> Function({bool isFromSignup})? onLoggedIn;
 
   @override
   State<OnboardingScreen> createState() => _OnboardingScreenState();

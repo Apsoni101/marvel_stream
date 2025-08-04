@@ -5,6 +5,7 @@ class RoutePaths{
   static const String dashboard = '/dashboardRouter';
   static const String signup = 'signup';
   static const String home = 'home';
+  static const String profile = 'profile';
   static const String categories = 'categories';
   static const String more = 'more';
   static const String downloads = 'downloads';

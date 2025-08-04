@@ -15,7 +15,7 @@ class OnboardingBottomButtons extends StatelessWidget {
     this.onLoggedIn,
   });
 
-  final VoidCallback? onLoggedIn;
+  final Future<void> Function({bool isFromSignup})? onLoggedIn;
   final OnboardingPageController pageController;
   final VoidCallback onContinue;
 

@@ -49,7 +49,7 @@ class DashboardScreen extends StatelessWidget {
                   BlendMode.srcIn,
                 ),
               ),
-              label: AppStrings.categories,
+              label: AppStrings.comics,
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(

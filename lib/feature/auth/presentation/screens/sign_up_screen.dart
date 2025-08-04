@@ -19,7 +19,7 @@ import 'package:marvel_stream/feature/common/presentation/widgets/signup_login_b
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key, this.onLoggedIn});
 
-  final VoidCallback? onLoggedIn;
+  final Future<void> Function({bool isFromSignup})? onLoggedIn;
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -51,7 +51,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ScaffoldMessenger.of(
               context,
             ).showSnackBar(const SnackBar(content: Text("Success")));
-             widget.onLoggedIn?.call();
+            await widget.onLoggedIn?.call(isFromSignup: true);
           }
         },
         child: BlocSelector<
