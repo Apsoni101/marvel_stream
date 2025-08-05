@@ -1,9 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marvel_stream/core/constants/app_colors.dart';
 import 'package:marvel_stream/core/constants/app_strings.dart';
-import 'package:marvel_stream/core/constants/app_textstyles.dart';
 import 'package:marvel_stream/core/di/app_injector.dart';
 import 'package:marvel_stream/core/enums/character_section_type.dart';
 import 'package:marvel_stream/core/enums/section_status.dart';
@@ -11,6 +9,7 @@ import 'package:marvel_stream/feature/characters/domain/entities/character_entit
 import 'package:marvel_stream/feature/characters/domain/entities/section_state.dart';
 import 'package:marvel_stream/feature/characters/presentation/bloc/characters_bloc.dart';
 import 'package:marvel_stream/feature/characters/presentation/widgets/characters_shimmer.dart';
+import 'package:marvel_stream/feature/common/presentation/widgets/error_section_widget.dart';
 import 'package:marvel_stream/feature/common/presentation/widgets/generic_carousel_section.dart';
 import 'package:marvel_stream/feature/common/presentation/widgets/horizontal_listview_section.dart';
 import 'package:marvel_stream/feature/common/presentation/widgets/masonry_gridview_section.dart';
@@ -47,41 +46,49 @@ class CharactersScreen extends StatelessWidget {
     padding: const EdgeInsets.symmetric(vertical: 30),
     children: <Widget>[
       _buildSection(
+        context: context,
         title: AppStrings.featuredCharacters,
         sectionState: state.featuredCharacters,
         type: CharacterSectionType.carousel,
       ),
       _buildSection(
+        context: context,
         title: AppStrings.classicCharacters,
         sectionState: state.classicCharacters,
         type: CharacterSectionType.grid,
       ),
       _buildSection(
+        context: context,
         title: AppStrings.avengersCharacters,
         sectionState: state.avengersCharacters,
         type: CharacterSectionType.horizontal,
       ),
       _buildSection(
+        context: context,
         title: AppStrings.spiderVerseCharacters,
         sectionState: state.spiderVerseCharacters,
         type: CharacterSectionType.grid,
       ),
       _buildSection(
+        context: context,
         title: AppStrings.xMenCharacters,
         sectionState: state.xMenCharacters,
         type: CharacterSectionType.horizontal,
       ),
       _buildSection(
+        context: context,
         title: AppStrings.hulkFamilyCharacters,
         sectionState: state.hulkCharacters,
         type: CharacterSectionType.grid,
       ),
       _buildSection(
+        context: context,
         title: AppStrings.guardiansCharacters,
         sectionState: state.guardiansCharacters,
         type: CharacterSectionType.horizontal,
       ),
       _buildSection(
+        context: context,
         title: AppStrings.aToZCharacters,
         sectionState: state.aToZCharacters,
         type: CharacterSectionType.grid,
@@ -91,6 +98,7 @@ class CharactersScreen extends StatelessWidget {
 
   /// Generic section builder that handles loading, loaded and error states.
   Widget _buildSection({
+    required final BuildContext context,
     required final String title,
     required final SectionState<CharacterEntity> sectionState,
     required final CharacterSectionType type,
@@ -103,12 +111,38 @@ class CharactersScreen extends StatelessWidget {
         return _buildLoadedSection(title, sectionState.items, type);
       case SectionStatus.error:
         return _buildErrorSection(
+          context,
           title,
           sectionState.errorMessage ?? 'Unknown error',
           isCarousel: type == CharacterSectionType.carousel,
+          retryEvent: switch (type) {
+            CharacterSectionType.carousel =>
+                const FetchFeaturedCharacters(limit: 10),
+            CharacterSectionType.grid => switch (title) {
+              AppStrings.classicCharacters =>
+                  const FetchClassicCharacters(limit: 10),
+              AppStrings.spiderVerseCharacters =>
+                  const FetchSpiderVerseCharacters(limit: 10),
+              AppStrings.hulkFamilyCharacters =>
+                  const FetchHulkCharacters(limit: 10),
+              AppStrings.aToZCharacters =>
+                  const FetchAToZCharacters(limit: 100),
+              _ => const FetchCharacterLists(),
+            },
+            CharacterSectionType.horizontal => switch (title) {
+              AppStrings.avengersCharacters =>
+                  const FetchAvengersCharacters(limit: 10),
+              AppStrings.xMenCharacters =>
+                  const FetchXMenCharacters(limit: 10),
+              AppStrings.guardiansCharacters =>
+                  const FetchGuardiansCharacters(limit: 10),
+              _ => const FetchCharacterLists(),
+            },
+          },
         );
     }
   }
+
 
   /// Returns the loading (shimmer) variant for the given type.
   Widget _buildLoadingSection(
@@ -188,38 +222,20 @@ class CharactersScreen extends StatelessWidget {
 
   /// Error UI (same as your existing implementation).
   Widget _buildErrorSection(
-    final String title,
-    final String errorMessage, {
-    final bool isCarousel = false,
-  }) => Container(
-    margin: const EdgeInsets.all(18),
-    child: Column(
-      children: <Widget>[
-        Align(
-          alignment: Alignment.topLeft,
-          child: Text(
-            title,
-            style: AppTextStyles.sectionTitle,
-          ),
-        ),
-        const SizedBox(height: 12),
-        const Icon(Icons.error_outline, color: AppColors.red, size: 32),
-        const SizedBox(height: 8),
-        Text(
-          'Error loading $title',
-          style: AppTextStyles.overviewTxt.copyWith(color: AppColors.red),
-        ),
-        const SizedBox(height: 4),
-        Text(
-          errorMessage,
-          style: AppTextStyles.overviewTxt.copyWith(color: AppColors.red),
-          textAlign: TextAlign.center,
-          maxLines: 2,
-          overflow: TextOverflow.ellipsis,
-        ),
-      ],
-    ),
-  );
+      final BuildContext context,
+      final String title,
+      final String errorMessage, {
+        required final CharactersEvent retryEvent,
+        final bool isCarousel = false,
+      }) =>
+      ErrorSectionWidget(
+        title: title,
+        errorMessage: errorMessage,
+        isCarousel: isCarousel,
+        onRetry: () {
+          context.read<CharactersBloc>().add(retryEvent);
+        },
+      );
 
   void _handleCharacterTap(final CharacterEntity character) {
     debugPrint('Character tapped: ${character.name}');

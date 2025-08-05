@@ -273,7 +273,7 @@ class CharactersBloc extends Bloc<CharactersEvent, CharactersState> {
     final Either<Failure, List<CharacterEntity>> result =
         await charactersUseCase.getCharacters(
           limit: event.limit,
-          nameStartsWith: 'X-',
+          nameStartsWith: 'x',
         );
 
     result.fold(
