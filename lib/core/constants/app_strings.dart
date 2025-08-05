@@ -31,6 +31,8 @@ class AppStrings {
   static const String characters = 'Characters';
   static const String download = 'Download';
   static const String more = 'More';
+  static const String news = 'News';
+  static const String series = 'Series';
   static const String details = 'Details';
   static const String moreInfo = 'More Info';
   static const String trailer = 'Trailer';
@@ -63,7 +65,18 @@ class AppStrings {
   static const String support = 'Support';
   static const String privacySettings = 'Privacy Settings';
   static const String parentalControl = 'Parental Control';
-
-  // Actions
   static const String signOut = 'Sign Out';
+  static const String latestComics = 'Latest comics';
+  static const String featuredCharacters = 'Featured characters';
+  static const String latestCharacters = 'Latest characters';
+  static const String classicCharacters = 'Classic characters';
+  static const String classicComics = 'Classic comics';
+  static const String trendingComics = 'Trending comics';
+  static const String aToZCharacters = 'A-Z Characters';
+  static const String zToACharacters = 'Z-A Characters';
+  static const String avengersCharacters = 'Avengers';
+  static const String spiderVerseCharacters = 'Spider-Verse';
+  static const String xMenCharacters = 'X-Men';
+  static const String hulkFamilyCharacters = 'Hulk Family';
+  static const String guardiansCharacters = 'Guardians of the Galaxy';
 }

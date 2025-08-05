@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marvel_stream/core/constants/app_colors.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class YouTubePlayerWidget extends StatefulWidget {
@@ -36,7 +37,7 @@ class _YouTubePlayerWidgetState extends State<YouTubePlayerWidget> {
       child: YoutubePlayer(
         controller: _controller,
         showVideoProgressIndicator: true,
-        progressIndicatorColor: Colors.redAccent,
+        progressIndicatorColor: AppColors.red,
       ),
     );
 }

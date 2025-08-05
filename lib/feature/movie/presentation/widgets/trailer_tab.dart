@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:marvel_stream/core/constants/app_colors.dart';
 import 'package:marvel_stream/core/constants/app_strings.dart';
 import 'package:marvel_stream/core/extensions/string_extensions.dart';
 import 'package:marvel_stream/feature/common/presentation/widgets/bright_cove_player.dart';
@@ -27,7 +28,7 @@ class MovieTrailerTab extends StatelessWidget {
     child: Center(
       child: Text(
         AppStrings.trailerNA,
-        style: TextStyle(fontSize: 16, color: Colors.white70),
+        style: TextStyle(fontSize: 16, color: AppColors.white50),
       ),
     ),
   );

@@ -1,15 +1,17 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:marvel_stream/core/constants/app_colors.dart';
 import 'package:marvel_stream/core/constants/app_strings.dart';
+import 'package:marvel_stream/core/constants/app_textstyles.dart';
 import 'package:marvel_stream/core/di/app_injector.dart';
 import 'package:marvel_stream/core/navigation/app_router.gr.dart';
 import 'package:marvel_stream/feature/home/domain/entities/movie_entity.dart';
 import 'package:marvel_stream/feature/home/presentation/bloc/movies_bloc.dart';
-import 'package:marvel_stream/feature/home/presentation/widgets/grid_view_movies_section.dart';
+import 'package:marvel_stream/feature/common/presentation/widgets/generic_carousel_section.dart';
+import 'package:marvel_stream/feature/common/presentation/widgets/grid_view_item_section.dart';
 import 'package:marvel_stream/feature/home/presentation/widgets/home_screen_app_bar.dart';
-import 'package:marvel_stream/feature/home/presentation/widgets/horizontal_listview_movies_section.dart';
-import 'package:marvel_stream/feature/home/presentation/widgets/movie_section.dart';
+import 'package:marvel_stream/feature/common/presentation/widgets/horizontal_listview_section.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -45,7 +47,9 @@ class HomeScreen extends StatelessWidget {
                   MoviesError(:final String message) => Center(
                     child: Text(
                       message,
-                      style: const TextStyle(color: Colors.red),
+                      style: AppTextStyles.overviewTxt.copyWith(
+                        color: AppColors.red,
+                      ),
                     ),
                   ),
                 },
@@ -62,33 +66,37 @@ class HomeScreen extends StatelessWidget {
   ) => ListView(
     padding: const EdgeInsets.symmetric(vertical: 30),
     children: <Widget>[
-      MovieSection(
+      GenericCarouselSection<MovieEntity>(
         title: AppStrings.upcomingMovies,
-        movies: latestMovies,
-        onMovieTap: (final MovieEntity movie) async {
+        items: latestMovies,
+        coverImageUrlGetter: (final MovieEntity movie) => movie.coverUrl,
+        onItemTap: (final MovieEntity movie) async {
           await context.router.push(MovieDetailRoute(movie: movie));
         },
       ),
-      MovieSection(
+      GenericCarouselSection<MovieEntity>(
         title: AppStrings.trendingNow,
-        movies: trendingMovies,
-        onMovieTap: (final MovieEntity movie) async {
+        items: trendingMovies,
+        coverImageUrlGetter: (final MovieEntity movie) => movie.coverUrl,
+        onItemTap: (final MovieEntity movie) async {
           await context.router.push(MovieDetailRoute(movie: movie));
         },
       ),
-      HorizontalLisViewMoviesSection(
+      HorizontalListViewSection<MovieEntity>(
         title: AppStrings.oldMovies,
-        movies: oldMovies,
-        onMovieTap: (final MovieEntity movie) async {
+        items: oldMovies,
+        onItemTap: (final MovieEntity movie) async {
           await context.router.push(MovieDetailRoute(movie: movie));
         },
+        coverImageUrlGetter: (final MovieEntity movie) => movie.coverUrl,
       ),
-      GridViewMoviesSection(
+      GridViewItemSection<MovieEntity>(
         title: AppStrings.allMoviesCollection,
-        movies: allMovies,
-        onMovieTap: (final MovieEntity movie) async {
+        items: allMovies,
+        onItemTap: (final MovieEntity movie) async {
           await context.router.push(MovieDetailRoute(movie: movie));
         },
+        coverImageUrlGetter: (final MovieEntity movie) => movie.coverUrl,
       ),
     ],
   );

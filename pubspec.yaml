@@ -53,6 +53,7 @@ dependencies:
   video_player: ^2.10.0
   webview_flutter: ^4.2.2
   youtube_player_flutter: ^9.1.1
+  firebase_remote_config: ^5.5.0
 
 
 dev_dependencies:

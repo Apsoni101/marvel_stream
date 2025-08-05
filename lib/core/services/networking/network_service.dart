@@ -9,29 +9,43 @@ class NetworkService {
   final ApiClient apiClient;
 
   Future<Either<Failure, T>> getPath<T>(
-    final String path, {
-    required final T Function(dynamic data) parser,
-    final Map<String, dynamic>? queryParams,
-  }) async {
+      final String path, {
+        required final T Function(dynamic data) parser,
+        final Map<String, dynamic>? queryParams,
+      }) async {
     try {
       final Response<dynamic> response = await apiClient.dio.get(
         path,
         queryParameters: queryParams,
       );
 
-      final Failure? failure = _handleStatusCode(response.statusCode);
-      if (failure != null) {
-        return Left<Failure, T>(failure);
+      final Failure? statusFailure = _handleStatusCode(response.statusCode);
+      if (statusFailure != null) {
+        return Left<Failure, T>(statusFailure);
       }
 
-      final T parsedData = parser(response.data);
-      return Right<Failure, T>(parsedData);
+      final Failure? dataFailure = _validateResponseData(response.data);
+      if (dataFailure != null) {
+        return Left<Failure, T>(dataFailure);
+      }
+
+      if (response.data == null) {
+        return Left<Failure, T>(Failure("Response data is null"));
+      }
+
+      try {
+        final parsedData = parser(response.data);
+        return Right<Failure, T>(parsedData);
+      }on Exception catch (e) {
+        return Left<Failure, T>(Failure("Failed to parse response: $e"));
+      }
     } on DioException catch (e) {
       return Left<Failure, T>(_handleDioError(e));
     } on Exception catch (e) {
       return Left<Failure, T>(Failure("Unexpected error: $e"));
     }
   }
+
 
   Failure? _handleStatusCode(final int? statusCode) {
     switch (statusCode) {
@@ -51,6 +65,51 @@ class NetworkService {
       default:
         return Failure("Unexpected error: $statusCode");
     }
+  }
+
+  Failure? _validateResponseData(final dynamic data) {
+    if (data == null) {
+      return Failure("Response data is null");
+    }
+
+    if (data is Map && data.isEmpty) {
+      return Failure("Response data is empty");
+    }
+
+    if (data is String && data.trim().isEmpty) {
+      return Failure("Response data is empty string");
+    }
+
+    if (data is Map) {
+      if (data.containsKey('data')) {
+        final dynamic marvelData = data['data'];
+        if (marvelData == null) {
+          return Failure("Marvel API data is null");
+        }
+
+        if (marvelData is Map) {
+          if (marvelData.containsKey('results')) {
+            final results = marvelData['results'];
+            if (results == null) {
+              return Failure("Marvel API results is null");
+            }
+            if (results is List && results.isEmpty) {
+              return Failure("No results found");
+            }
+          }
+        }
+      }
+
+      if (data.containsKey('code')) {
+        final int? code = data['code'];
+        if (code != null && code != 200) {
+          final dynamic status = data['status'] ?? 'Unknown error';
+          return Failure("API Error ($code): $status");
+        }
+      }
+    }
+
+    return null;
   }
 
   Failure _handleDioError(final DioException e) {

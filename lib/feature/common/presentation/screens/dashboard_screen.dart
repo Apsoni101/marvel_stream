@@ -16,6 +16,7 @@ class DashboardScreen extends StatelessWidget {
       HomeRoute(),
       ComicsRoute(),
       CharactersRoute(),
+      NewsRoute(),
       MoreRoute(),
     ],
     bottomNavigationBuilder:
@@ -65,11 +66,23 @@ class DashboardScreen extends StatelessWidget {
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
-                AppAssets.moreIc,
+                AppAssets.newsIc,
                 width: 24,
                 height: 24,
                 colorFilter: ColorFilter.mode(
                   tabsRouter.activeIndex == 3 ? AppColors.red : AppColors.white,
+                  BlendMode.srcIn,
+                ),
+              ),
+              label: AppStrings.news,
+            ),
+            BottomNavigationBarItem(
+              icon: SvgPicture.asset(
+                AppAssets.moreIc,
+                width: 24,
+                height: 24,
+                colorFilter: ColorFilter.mode(
+                  tabsRouter.activeIndex == 4 ? AppColors.red : AppColors.white,
                   BlendMode.srcIn,
                 ),
               ),

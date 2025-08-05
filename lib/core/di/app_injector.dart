@@ -13,6 +13,11 @@ import 'package:marvel_stream/feature/auth/domain/repositories/auth_repo.dart';
 import 'package:marvel_stream/feature/auth/domain/use_cases/auth_usecase.dart';
 import 'package:marvel_stream/feature/auth/presentation/bloc/login_bloc/login_bloc.dart';
 import 'package:marvel_stream/feature/auth/presentation/bloc/signup_bloc/signup_bloc.dart';
+import 'package:marvel_stream/feature/characters/data/data_sources/characters_remote_datasource.dart';
+import 'package:marvel_stream/feature/characters/data/repositories/characters_repository_impl.dart';
+import 'package:marvel_stream/feature/characters/domain/repositories/characters_repository.dart';
+import 'package:marvel_stream/feature/characters/domain/use_cases/characters_usecase.dart';
+import 'package:marvel_stream/feature/characters/presentation/bloc/characters_bloc.dart';
 import 'package:marvel_stream/feature/home/data/data_sources/movie_data_source.dart';
 import 'package:marvel_stream/feature/home/data/repositories/movie_list_repo_impl.dart';
 import 'package:marvel_stream/feature/home/domain/repositories/movie_list_repo.dart';
@@ -24,6 +29,11 @@ import 'package:marvel_stream/feature/more/domain/repositories/more_repository.d
 import 'package:marvel_stream/feature/more/domain/use_cases/more_usecase.dart';
 import 'package:marvel_stream/feature/more/presentation/bloc/more_bloc.dart';
 import 'package:marvel_stream/feature/movie/presentation/bloc/movie_detail_bloc.dart';
+import 'package:marvel_stream/feature/news/data/data_sources/news_remote_data_source.dart';
+import 'package:marvel_stream/feature/news/data/repositories/news_repository_impl.dart';
+import 'package:marvel_stream/feature/news/domain/repositories/news_repository.dart';
+import 'package:marvel_stream/feature/news/domain/use_cases/news_use_case.dart';
+import 'package:marvel_stream/feature/news/presentation/bloc/news_bloc.dart';
 
 class AppInjector {
   AppInjector._();
@@ -116,6 +126,41 @@ class AppInjector {
       )
       ..registerFactory(
         () => MoreBloc(moreRepositoryUseCase: getIt<MoreRepositoryUseCase>()),
-      );
+      )
+      // Characters Feature
+      ..registerLazySingleton<CharactersRemoteDataSource>(
+        () => CharactersRemoteDataSourceImpl(
+          networkService: getIt<NetworkService>(
+            instanceName: 'comicsNetworkService',
+          ),
+        ),
+      )
+      ..registerLazySingleton<CharactersRepository>(
+        () => CharactersRepositoryImpl(
+          remoteDataSource: getIt<CharactersRemoteDataSource>(),
+        ),
+      )
+      ..registerLazySingleton<CharactersUseCase>(
+        () => CharactersUseCase(repository: getIt<CharactersRepository>()),
+      )
+      ..registerFactory(
+        () => CharactersBloc(charactersUseCase: getIt<CharactersUseCase>()),
+      )
+      // News Feature
+      ..registerLazySingleton<NewsRemoteDataSource>(
+        () => NewsRemoteDataSourceImpl(
+          networkService: getIt<NetworkService>(
+            instanceName: 'comicsNetworkService',
+          ),
+        ),
+      )
+      ..registerLazySingleton<NewsRepository>(
+        () =>
+            NewsRepositoryImpl(remoteDataSource: getIt<NewsRemoteDataSource>()),
+      )
+      ..registerLazySingleton<NewsUseCase>(
+        () => NewsUseCase(repository: getIt<NewsRepository>()),
+      )
+      ..registerFactory(() => NewsBloc(newsUseCase: getIt<NewsUseCase>()));
   }
 }

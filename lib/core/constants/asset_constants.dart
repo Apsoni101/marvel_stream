@@ -13,6 +13,7 @@ class AppAssets {
   static const String categoriesIc = "assets/icons/categories_ic.svg";
   static const String downloadsIc = "assets/icons/downloads_ic.svg";
   static const String moreIc = "assets/icons/more_ic.svg";
+  static const String newsIc = "assets/icons/news_ic.svg";
   static const String spiderManProfileIc = "assets/icons/spiderman_profile.svg";
   static const String bookmarkIc = "assets/icons/bookmark.png";
   static const String arrowCircleRight = "assets/icons/arrow_circle_right.png";
