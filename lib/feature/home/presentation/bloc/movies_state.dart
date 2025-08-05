@@ -10,30 +10,36 @@ sealed class MoviesState extends Equatable {
 
 final class MoviesInitial extends MoviesState {}
 
-final class MoviesLoading extends MoviesState {}
-
 final class MoviesReady extends MoviesState {
-
   const MoviesReady({
-    required this.allMovies,
-    required this.latestMovies,
-    required this.trendingMovies,
-    required this.oldMovies,
+    this.allMovies = const SectionState<MovieEntity>(),
+    this.latestMovies = const SectionState<MovieEntity>(),
+    this.trendingMovies = const SectionState<MovieEntity>(),
+    this.oldMovies = const SectionState<MovieEntity>(),
   });
-  final List<MovieEntity> allMovies;
-  final List<MovieEntity> latestMovies;
-  final List<MovieEntity> trendingMovies;
-  final List<MovieEntity> oldMovies;
+
+  final SectionState<MovieEntity> allMovies;
+  final SectionState<MovieEntity> latestMovies;
+  final SectionState<MovieEntity> trendingMovies;
+  final SectionState<MovieEntity> oldMovies;
+
+  MoviesReady copyWith({
+    final SectionState<MovieEntity>? allMovies,
+    final SectionState<MovieEntity>? latestMovies,
+    final SectionState<MovieEntity>? trendingMovies,
+    final SectionState<MovieEntity>? oldMovies,
+  }) => MoviesReady(
+    allMovies: allMovies ?? this.allMovies,
+    latestMovies: latestMovies ?? this.latestMovies,
+    trendingMovies: trendingMovies ?? this.trendingMovies,
+    oldMovies: oldMovies ?? this.oldMovies,
+  );
 
   @override
-  List<Object?> get props => [allMovies, latestMovies, trendingMovies, oldMovies];
-}
-
-final class MoviesError extends MoviesState {
-
-  const MoviesError({required this.message});
-  final String message;
-
-  @override
-  List<Object?> get props => [message];
+  List<Object?> get props => <Object?>[
+    allMovies,
+    latestMovies,
+    trendingMovies,
+    oldMovies,
+  ];
 }
