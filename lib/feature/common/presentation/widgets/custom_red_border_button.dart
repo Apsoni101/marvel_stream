@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_stream/core/constants/app_colors.dart';
 import 'package:marvel_stream/core/constants/app_textstyles.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
 
 class CustomRedBorderButton extends StatelessWidget {
   const CustomRedBorderButton({
@@ -23,11 +23,17 @@ class CustomRedBorderButton extends StatelessWidget {
     onPressed: onPressed,
     style: ElevatedButton.styleFrom(
       shape: const RoundedRectangleBorder(),
-      backgroundColor: backgroundColor ?? AppColors.red,
+      elevation: 0,
+      backgroundColor: backgroundColor ?? context.appColors.red,
       side: side,
       padding:
           padding ?? const EdgeInsets.symmetric(vertical: 14, horizontal: 108),
     ),
-    child: Text(text, style: AppTextStyles.continueTxtStyle),
+    child: Text(
+      text,
+      style: AppTextStyles.continueTxtStyle.copyWith(
+        color: context.appColors.white,
+      ),
+    ),
   );
 }

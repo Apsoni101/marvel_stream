@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_stream/core/constants/app_colors.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
 
 class ShimmerEffect extends StatefulWidget {
   const ShimmerEffect({
@@ -38,13 +38,13 @@ class _ShimmerEffectState extends State<ShimmerEffect>
 
   @override
   Widget build(final BuildContext context) {
-    const LinearGradient shimmerGradient = LinearGradient(
+    LinearGradient shimmerGradient = LinearGradient(
       colors: <Color>[
-        AppColors.baseColor,
-        AppColors.highlightColor,
-        AppColors.baseColor,
+        context.appColors.baseColor,
+        context.appColors.highlightColor,
+        context.appColors.baseColor,
       ],
-      stops: <double>[0.25, 0.5, 0.75],
+      stops: const <double>[0.25, 0.5, 0.75],
     );
 
     return ClipRRect(
@@ -54,25 +54,25 @@ class _ShimmerEffectState extends State<ShimmerEffect>
         height: widget.height,
         child: AnimatedBuilder(
           animation: _shimmerController,
-          builder: (final BuildContext context, final Widget? child) => ShaderMask(
-            shaderCallback: (final Rect bounds) {
-              final double width = bounds.width;
-              final double shimmerPosition = _shimmerController.value * 2 - 1;
-              return shimmerGradient.createShader(
-                Rect.fromLTWH(
-                  shimmerPosition * width,
-                  0,
-                  width,
-                  bounds.height,
-                ),
-              );
-            },
-            blendMode: BlendMode.srcATop,
-            child: child,
-          ),
-          child: Container(
-            color: AppColors.baseColor,
-          ),
+          builder:
+              (final BuildContext context, final Widget? child) => ShaderMask(
+                shaderCallback: (final Rect bounds) {
+                  final double width = bounds.width;
+                  final double shimmerPosition =
+                      _shimmerController.value * 2 - 1;
+                  return shimmerGradient.createShader(
+                    Rect.fromLTWH(
+                      shimmerPosition * width,
+                      0,
+                      width,
+                      bounds.height,
+                    ),
+                  );
+                },
+                blendMode: BlendMode.srcATop,
+                child: child,
+              ),
+          child: Container(color: context.appColors.baseColor),
         ),
       ),
     );

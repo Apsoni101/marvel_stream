@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:marvel_stream/core/constants/app_colors.dart';
 import 'package:marvel_stream/core/constants/app_textstyles.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
 
 class AuthProviderButton extends StatelessWidget {
   const AuthProviderButton({
@@ -18,12 +18,12 @@ class AuthProviderButton extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => ElevatedButton(
     onPressed: onPressed,
-    style: const ButtonStyle(
-      backgroundColor: WidgetStatePropertyAll<Color>(AppColors.white),
-      shape: WidgetStatePropertyAll<RoundedRectangleBorder>(
+    style: ButtonStyle(
+      backgroundColor: WidgetStatePropertyAll<Color>(context.appColors.permanentWhite),
+      shape: const WidgetStatePropertyAll<RoundedRectangleBorder>(
         RoundedRectangleBorder(),
       ),
-      padding: WidgetStatePropertyAll<EdgeInsets>(
+      padding: const WidgetStatePropertyAll<EdgeInsets>(
         EdgeInsets.symmetric(horizontal: 8, vertical: 8),
       ),
     ),
@@ -39,7 +39,9 @@ class AuthProviderButton extends StatelessWidget {
         ),
         Text(
           title,
-          style: AppTextStyles.hintTxtStyle.copyWith(color: AppColors.black),
+          style: AppTextStyles.hintTxtStyle.copyWith(
+            color: context.appColors.permanentBlack,
+          ),
         ),
       ],
     ),

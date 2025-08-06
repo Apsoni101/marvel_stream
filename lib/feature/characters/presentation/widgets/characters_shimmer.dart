@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_stream/core/constants/app_strings.dart';
-import 'package:marvel_stream/feature/characters/domain/entities/character_entity.dart';
+import 'package:marvel_stream/core/extensions/localization_extension.dart';import 'package:marvel_stream/feature/characters/domain/entities/character_entity.dart';
 import 'package:marvel_stream/feature/common/presentation/widgets/generic_carousel_section.dart';
 import 'package:marvel_stream/feature/common/presentation/widgets/horizontal_listview_section.dart';
 import 'package:marvel_stream/feature/common/presentation/widgets/masonry_gridview_section.dart';
@@ -15,7 +14,7 @@ class CharactersShimmer extends StatelessWidget {
     padding: const EdgeInsets.symmetric(vertical: 30),
     children: <Widget>[
       GenericCarouselSection<CharacterEntity>(
-        title: AppStrings.featuredCharacters,
+        title: context.locale.featuredCharacters,
         items: const <CharacterEntity>[],
         coverImageUrlGetter:
             (final CharacterEntity character) =>
@@ -24,7 +23,7 @@ class CharactersShimmer extends StatelessWidget {
         isLoading: true,
       ),
       HorizontalListViewSection<CharacterEntity>(
-        title: AppStrings.aToZCharacters,
+        title: context.locale.aToZCharacters,
         items: const <CharacterEntity>[],
         onItemTap: (_) {},
         coverImageUrlGetter:
@@ -33,7 +32,7 @@ class CharactersShimmer extends StatelessWidget {
         isLoading: true,
       ),
       MasonryGridViewItemSection<CharacterEntity>(
-        title: AppStrings.classicCharacters,
+        title: context.locale.classicCharacters,
         items: const <CharacterEntity>[],
         onItemTap: (_) {},
         coverImageUrlGetter:
@@ -42,7 +41,7 @@ class CharactersShimmer extends StatelessWidget {
         isLoading: true,
       ),
       HorizontalListViewSection<CharacterEntity>(
-        title: AppStrings.avengersCharacters,
+        title: context.locale.avengersCharacters,
         items: const <CharacterEntity>[],
         onItemTap: (_) {},
         coverImageUrlGetter:
@@ -51,7 +50,7 @@ class CharactersShimmer extends StatelessWidget {
         isLoading: true,
       ),
       MasonryGridViewItemSection<CharacterEntity>(
-        title: AppStrings.spiderVerseCharacters,
+        title: context.locale.spiderVerseCharacters,
         items: const <CharacterEntity>[],
         onItemTap: (_) {},
         coverImageUrlGetter:
@@ -60,7 +59,7 @@ class CharactersShimmer extends StatelessWidget {
         isLoading: true,
       ),
       HorizontalListViewSection<CharacterEntity>(
-        title: AppStrings.xMenCharacters,
+        title: context.locale.xMenCharacters,
         items: const <CharacterEntity>[],
         onItemTap: (_) {},
         coverImageUrlGetter:

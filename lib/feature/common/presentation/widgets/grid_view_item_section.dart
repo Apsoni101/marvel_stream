@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_stream/core/constants/app_colors.dart';
 import 'package:marvel_stream/core/constants/app_textstyles.dart';
 import 'package:marvel_stream/core/constants/asset_constants.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
 import 'package:marvel_stream/feature/common/presentation/widgets/shimmer_effect.dart';
 
 class GridViewItemSection<T> extends StatelessWidget {
@@ -47,7 +47,12 @@ class GridViewItemSection<T> extends StatelessWidget {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.all(12),
-          child: Text(title, style: AppTextStyles.sectionTitle),
+          child: Text(
+            title,
+            style: AppTextStyles.sectionTitle.copyWith(
+              color: context.appColors.white,
+            ),
+          ),
         ),
         GridView.builder(
           padding: padding,
@@ -68,7 +73,7 @@ class GridViewItemSection<T> extends StatelessWidget {
             final T item = items[index];
             return GestureDetector(
               onTap: () => onItemTap(item),
-              child: _buildCard(item),
+              child: _buildCard(item, context),
             );
           },
         ),
@@ -76,7 +81,7 @@ class GridViewItemSection<T> extends StatelessWidget {
     );
   }
 
-  Widget _buildCard(final T item) => ClipRRect(
+  Widget _buildCard(final T item, final BuildContext context) => ClipRRect(
     borderRadius: BorderRadius.circular(borderRadius),
     child: Stack(
       children: <Widget>[
@@ -105,10 +110,10 @@ class GridViewItemSection<T> extends StatelessWidget {
                   final BuildContext context,
                   final Object error,
                   final StackTrace? stackTrace,
-                ) => _buildPlaceholder(),
+                ) => _buildPlaceholder(context),
           )
         else
-          _buildPlaceholder(),
+          _buildPlaceholder(context),
         Positioned(
           child: Image.asset(bookmarkAssetPath, width: 28, height: 28),
         ),
@@ -116,9 +121,11 @@ class GridViewItemSection<T> extends StatelessWidget {
     ),
   );
 
-  Widget _buildPlaceholder() => const ColoredBox(
-    color: AppColors.lightGrey,
-    child: Center(child: Icon(Icons.movie, size: 40, color: AppColors.white)),
+  Widget _buildPlaceholder(final BuildContext context) => ColoredBox(
+    color: context.appColors.lightGrey,
+    child: Center(
+      child: Icon(Icons.movie, size: 40, color: context.appColors.white),
+    ),
   );
 
   Widget _buildShimmerCard() => ClipRRect(

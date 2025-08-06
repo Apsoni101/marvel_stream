@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_stream/core/constants/app_strings.dart';
+import 'package:marvel_stream/core/extensions/localization_extension.dart';
 import 'package:marvel_stream/feature/common/presentation/widgets/generic_carousel_section.dart';
 import 'package:marvel_stream/feature/common/presentation/widgets/grid_view_item_section.dart';
 import 'package:marvel_stream/feature/common/presentation/widgets/horizontal_listview_section.dart';
@@ -13,31 +13,31 @@ class MoviesShimmer extends StatelessWidget {
   @override
   Widget build(final BuildContext context) => ListView(
     padding: const EdgeInsets.symmetric(vertical: 30),
-    children: const <Widget>[
+    children: <Widget>[
       GenericCarouselSection<MovieEntity>(
-        title: AppStrings.upcomingMovies,
-        items: <MovieEntity>[],
+        title: context.locale.upcomingMovies,
+        items: const <MovieEntity>[],
         coverImageUrlGetter: _getCoverUrl,
         onItemTap: _noop,
         isLoading: true,
       ),
       GenericCarouselSection<MovieEntity>(
-        title: AppStrings.trendingNow,
-        items: <MovieEntity>[],
+        title: context.locale.trendingNow,
+        items: const <MovieEntity>[],
         coverImageUrlGetter: _getCoverUrl,
         onItemTap: _noop,
         isLoading: true,
       ),
       HorizontalListViewSection<MovieEntity>(
-        title: AppStrings.oldMovies,
-        items: <MovieEntity>[],
+        title: context.locale.oldMovies,
+        items: const <MovieEntity>[],
         coverImageUrlGetter: _getCoverUrl,
         onItemTap: _noop,
         isLoading: true,
       ),
       GridViewItemSection<MovieEntity>(
-        title: AppStrings.allMoviesCollection,
-        items: <MovieEntity>[],
+        title: context.locale.allMoviesCollection,
+        items: const <MovieEntity>[],
         coverImageUrlGetter: _getCoverUrl,
         onItemTap: _noop,
         isLoading: true,

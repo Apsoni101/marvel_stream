@@ -54,6 +54,9 @@ dependencies:
   webview_flutter: ^4.2.2
   youtube_player_flutter: ^9.1.1
   firebase_remote_config: ^5.5.0
+  flutter_localizations:
+    sdk: flutter
+  intl: any
 
 
 dev_dependencies:
@@ -79,6 +82,8 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  generate: true
+
 
   # To add assets to your application, add an assets section, like this:
   assets:

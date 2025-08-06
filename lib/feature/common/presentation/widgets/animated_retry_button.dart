@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_stream/core/constants/app_colors.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
 
 /// A retry button with rotation animation when pressed.
 class AnimatedRetryButton extends StatefulWidget {
@@ -45,7 +45,7 @@ class _AnimatedRetryButtonState extends State<AnimatedRetryButton>
   Widget build(final BuildContext context) => RotationTransition(
     turns: _controller,
     child: IconButton(
-      icon: const Icon(Icons.refresh, color: AppColors.red),
+      icon: Icon(Icons.refresh, color: context.appColors.red),
       onPressed: _handleTap,
     ),
   );

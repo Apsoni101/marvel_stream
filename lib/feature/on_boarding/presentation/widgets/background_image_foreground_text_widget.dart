@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marvel_stream/core/constants/app_textstyles.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
 
 class BackgroundImageForegroundTextWidget extends StatelessWidget {
   const BackgroundImageForegroundTextWidget({
@@ -22,6 +23,7 @@ class BackgroundImageForegroundTextWidget extends StatelessWidget {
         textAlign: TextAlign.center,
         text,
         style: AppTextStyles.continueTxtStyle.copyWith(
+          color: context.appColors.permanentWhite,
           fontSize: 20,
           decoration: TextDecoration.none,
         ),

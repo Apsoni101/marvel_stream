@@ -1,7 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:marvel_stream/core/constants/app_colors.dart';
 import 'package:marvel_stream/core/constants/app_textstyles.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
 import 'package:marvel_stream/feature/home/domain/entities/movie_entity.dart';
 
 class MovieDetailPoster extends StatelessWidget {
@@ -20,12 +20,12 @@ class MovieDetailPoster extends StatelessWidget {
         onError: (final Object error, final StackTrace? stackTrace) {},
       ),
     ),
-    foregroundDecoration: const BoxDecoration(
+    foregroundDecoration: BoxDecoration(
       gradient: LinearGradient(
         begin: Alignment.topCenter,
         end: Alignment.bottomCenter,
-        colors: <Color>[Colors.transparent, AppColors.black],
-        stops: <double>[0.5, 1],
+        colors: <Color>[Colors.transparent, context.appColors.black],
+        stops: const <double>[0.5, 1],
       ),
     ),
     child: Column(
@@ -35,10 +35,10 @@ class MovieDetailPoster extends StatelessWidget {
           alignment: AlignmentDirectional.topStart,
           child: IconButton(
             onPressed: () => context.router.pop(),
-            icon: const Icon(
+            icon: Icon(
               Icons.keyboard_backspace,
               size: 32,
-              color: AppColors.white,
+              color: context.appColors.permanentWhite,
             ),
           ),
         ),
@@ -47,7 +47,9 @@ class MovieDetailPoster extends StatelessWidget {
           child: Text(
             movie.title ?? "",
             textAlign: TextAlign.center,
-            style: AppTextStyles.movieDetailTitle,
+            style: AppTextStyles.movieDetailTitle.copyWith(
+              color: context.appColors.permanentWhite,
+            ),
           ),
         ),
       ],

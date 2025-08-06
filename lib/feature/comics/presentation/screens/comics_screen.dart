@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:marvel_stream/core/constants/app_colors.dart';
-import 'package:marvel_stream/core/constants/app_strings.dart';
 import 'package:marvel_stream/core/constants/app_textstyles.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
+import 'package:marvel_stream/core/extensions/localization_extension.dart';
 import 'package:marvel_stream/feature/comics/presentation/widgets/comics_tab_bar_body.dart';
 import 'package:marvel_stream/feature/comics/presentation/widgets/series_tab_bar_body.dart';
 
@@ -18,19 +18,21 @@ class ComicsScreen extends StatelessWidget {
         children: <Widget>[
           DecoratedBox(
             decoration: BoxDecoration(
-              border: Border.all(color: AppColors.red, width: 2),
+              border: Border.all(color: context.appColors.red, width: 2),
             ),
-            child: const TabBar(
+            child: TabBar(
               dividerColor: Colors.transparent,
-              unselectedLabelColor: AppColors.white,
-              labelColor: AppColors.white,
-              labelStyle: AppTextStyles.sectionTitle,
-              indicator: BoxDecoration(color: AppColors.red),
-              indicatorPadding: EdgeInsets.all(2),
+              unselectedLabelColor: context.appColors.white,
+              labelColor: context.appColors.permanentWhite,
+              labelStyle: AppTextStyles.sectionTitle.copyWith(
+                color: context.appColors.permanentWhite,
+              ),
+              indicator: BoxDecoration(color: context.appColors.red),
+              indicatorPadding: const EdgeInsets.all(2),
               indicatorSize: TabBarIndicatorSize.tab,
               tabs: <Widget>[
-                Tab(text: AppStrings.comics),
-                Tab(text: AppStrings.series),
+                Tab(text: context.locale.comics),
+                Tab(text: context.locale.series),
               ],
             ),
           ),

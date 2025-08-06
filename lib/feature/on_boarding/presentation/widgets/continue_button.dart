@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_stream/core/constants/app_colors.dart';
-import 'package:marvel_stream/core/constants/app_strings.dart';
-import 'package:marvel_stream/core/constants/app_textstyles.dart';
+import 'package:marvel_stream/core/extensions/localization_extension.dart';import 'package:marvel_stream/core/constants/app_textstyles.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
 
 class ContinueButton extends StatelessWidget {
   const ContinueButton({required this.onPressed, super.key});
@@ -13,12 +12,13 @@ class ContinueButton extends StatelessWidget {
     onPressed: onPressed,
     style: ElevatedButton.styleFrom(
       shape: const RoundedRectangleBorder(),
-      backgroundColor: AppColors.red,
+      backgroundColor: context.appColors.red,
       padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 108),
     ),
-    child: const Text(
-      AppStrings.continueTxt,
-      style: AppTextStyles.continueTxtStyle,
+    child: Text(
+      context.locale.continueTxt,
+      style: AppTextStyles.continueTxtStyle.copyWith(
+          color: context.appColors.permanentWhite),
     ),
   );
 }

@@ -9,17 +9,17 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'dart:async' as _i18;
+import 'dart:async' as _i19;
 
-import 'package:auto_route/auto_route.dart' as _i15;
-import 'package:flutter/material.dart' as _i17;
+import 'package:auto_route/auto_route.dart' as _i16;
+import 'package:flutter/material.dart' as _i18;
 import 'package:marvel_stream/core/navigation/router/auth_router.dart' as _i1;
 import 'package:marvel_stream/core/navigation/router/dashboard_router.dart'
     as _i4;
 import 'package:marvel_stream/feature/auth/presentation/screens/sign_in_screen.dart'
-    as _i12;
-import 'package:marvel_stream/feature/auth/presentation/screens/sign_up_screen.dart'
     as _i13;
+import 'package:marvel_stream/feature/auth/presentation/screens/sign_up_screen.dart'
+    as _i14;
 import 'package:marvel_stream/feature/characters/presentation/screens/characters_screen.dart'
     as _i2;
 import 'package:marvel_stream/feature/comics/presentation/screens/comics_screen.dart'
@@ -27,11 +27,13 @@ import 'package:marvel_stream/feature/comics/presentation/screens/comics_screen.
 import 'package:marvel_stream/feature/common/presentation/screens/dashboard_screen.dart'
     as _i5;
 import 'package:marvel_stream/feature/home/domain/entities/movie_entity.dart'
-    as _i16;
+    as _i17;
 import 'package:marvel_stream/feature/home/presentation/screens/home_screen.dart'
     as _i6;
 import 'package:marvel_stream/feature/more/presentation/screens/more_screen.dart'
     as _i7;
+import 'package:marvel_stream/feature/more/presentation/screens/settings_screen.dart'
+    as _i12;
 import 'package:marvel_stream/feature/movie/presentation/screens/movie_detail_screen.dart'
     as _i8;
 import 'package:marvel_stream/feature/news/presentation/screens/news_screen.dart'
@@ -41,17 +43,17 @@ import 'package:marvel_stream/feature/on_boarding/presentation/screens/onboardin
 import 'package:marvel_stream/feature/profile/presentation/screens/profile_screen.dart'
     as _i11;
 import 'package:marvel_stream/feature/splash/presentation/screens/splash_screen.dart'
-    as _i14;
+    as _i15;
 
 /// generated route for
 /// [_i1.AuthRouterPage]
-class AuthRouter extends _i15.PageRouteInfo<void> {
-  const AuthRouter({List<_i15.PageRouteInfo>? children})
+class AuthRouter extends _i16.PageRouteInfo<void> {
+  const AuthRouter({List<_i16.PageRouteInfo>? children})
     : super(AuthRouter.name, initialChildren: children);
 
   static const String name = 'AuthRouter';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i16.PageInfo page = _i16.PageInfo(
     name,
     builder: (data) {
       return const _i1.AuthRouterPage();
@@ -61,13 +63,13 @@ class AuthRouter extends _i15.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i2.CharactersScreen]
-class CharactersRoute extends _i15.PageRouteInfo<void> {
-  const CharactersRoute({List<_i15.PageRouteInfo>? children})
+class CharactersRoute extends _i16.PageRouteInfo<void> {
+  const CharactersRoute({List<_i16.PageRouteInfo>? children})
     : super(CharactersRoute.name, initialChildren: children);
 
   static const String name = 'CharactersRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i16.PageInfo page = _i16.PageInfo(
     name,
     builder: (data) {
       return const _i2.CharactersScreen();
@@ -77,13 +79,13 @@ class CharactersRoute extends _i15.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i3.ComicsScreen]
-class ComicsRoute extends _i15.PageRouteInfo<void> {
-  const ComicsRoute({List<_i15.PageRouteInfo>? children})
+class ComicsRoute extends _i16.PageRouteInfo<void> {
+  const ComicsRoute({List<_i16.PageRouteInfo>? children})
     : super(ComicsRoute.name, initialChildren: children);
 
   static const String name = 'ComicsRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i16.PageInfo page = _i16.PageInfo(
     name,
     builder: (data) {
       return const _i3.ComicsScreen();
@@ -93,13 +95,13 @@ class ComicsRoute extends _i15.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i4.DashboardRouterPage]
-class DashboardRouter extends _i15.PageRouteInfo<void> {
-  const DashboardRouter({List<_i15.PageRouteInfo>? children})
+class DashboardRouter extends _i16.PageRouteInfo<void> {
+  const DashboardRouter({List<_i16.PageRouteInfo>? children})
     : super(DashboardRouter.name, initialChildren: children);
 
   static const String name = 'DashboardRouter';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i16.PageInfo page = _i16.PageInfo(
     name,
     builder: (data) {
       return const _i4.DashboardRouterPage();
@@ -109,13 +111,13 @@ class DashboardRouter extends _i15.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i5.DashboardScreen]
-class DashboardRoute extends _i15.PageRouteInfo<void> {
-  const DashboardRoute({List<_i15.PageRouteInfo>? children})
+class DashboardRoute extends _i16.PageRouteInfo<void> {
+  const DashboardRoute({List<_i16.PageRouteInfo>? children})
     : super(DashboardRoute.name, initialChildren: children);
 
   static const String name = 'DashboardRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i16.PageInfo page = _i16.PageInfo(
     name,
     builder: (data) {
       return const _i5.DashboardScreen();
@@ -125,13 +127,13 @@ class DashboardRoute extends _i15.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i6.HomeScreen]
-class HomeRoute extends _i15.PageRouteInfo<void> {
-  const HomeRoute({List<_i15.PageRouteInfo>? children})
+class HomeRoute extends _i16.PageRouteInfo<void> {
+  const HomeRoute({List<_i16.PageRouteInfo>? children})
     : super(HomeRoute.name, initialChildren: children);
 
   static const String name = 'HomeRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i16.PageInfo page = _i16.PageInfo(
     name,
     builder: (data) {
       return const _i6.HomeScreen();
@@ -141,13 +143,13 @@ class HomeRoute extends _i15.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i7.MoreScreen]
-class MoreRoute extends _i15.PageRouteInfo<void> {
-  const MoreRoute({List<_i15.PageRouteInfo>? children})
+class MoreRoute extends _i16.PageRouteInfo<void> {
+  const MoreRoute({List<_i16.PageRouteInfo>? children})
     : super(MoreRoute.name, initialChildren: children);
 
   static const String name = 'MoreRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i16.PageInfo page = _i16.PageInfo(
     name,
     builder: (data) {
       return const _i7.MoreScreen();
@@ -157,11 +159,11 @@ class MoreRoute extends _i15.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i8.MovieDetailScreen]
-class MovieDetailRoute extends _i15.PageRouteInfo<MovieDetailRouteArgs> {
+class MovieDetailRoute extends _i16.PageRouteInfo<MovieDetailRouteArgs> {
   MovieDetailRoute({
-    required _i16.MovieEntity movie,
-    _i17.Key? key,
-    List<_i15.PageRouteInfo>? children,
+    required _i17.MovieEntity movie,
+    _i18.Key? key,
+    List<_i16.PageRouteInfo>? children,
   }) : super(
          MovieDetailRoute.name,
          args: MovieDetailRouteArgs(movie: movie, key: key),
@@ -170,7 +172,7 @@ class MovieDetailRoute extends _i15.PageRouteInfo<MovieDetailRouteArgs> {
 
   static const String name = 'MovieDetailRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i16.PageInfo page = _i16.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<MovieDetailRouteArgs>();
@@ -182,9 +184,9 @@ class MovieDetailRoute extends _i15.PageRouteInfo<MovieDetailRouteArgs> {
 class MovieDetailRouteArgs {
   const MovieDetailRouteArgs({required this.movie, this.key});
 
-  final _i16.MovieEntity movie;
+  final _i17.MovieEntity movie;
 
-  final _i17.Key? key;
+  final _i18.Key? key;
 
   @override
   String toString() {
@@ -204,13 +206,13 @@ class MovieDetailRouteArgs {
 
 /// generated route for
 /// [_i9.NewsScreen]
-class NewsRoute extends _i15.PageRouteInfo<void> {
-  const NewsRoute({List<_i15.PageRouteInfo>? children})
+class NewsRoute extends _i16.PageRouteInfo<void> {
+  const NewsRoute({List<_i16.PageRouteInfo>? children})
     : super(NewsRoute.name, initialChildren: children);
 
   static const String name = 'NewsRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i16.PageInfo page = _i16.PageInfo(
     name,
     builder: (data) {
       return const _i9.NewsScreen();
@@ -220,11 +222,11 @@ class NewsRoute extends _i15.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i10.OnboardingScreen]
-class OnboardingRoute extends _i15.PageRouteInfo<OnboardingRouteArgs> {
+class OnboardingRoute extends _i16.PageRouteInfo<OnboardingRouteArgs> {
   OnboardingRoute({
-    _i17.Key? key,
-    _i18.Future<void> Function({bool isFromSignup})? onLoggedIn,
-    List<_i15.PageRouteInfo>? children,
+    _i18.Key? key,
+    _i19.Future<void> Function({bool isFromSignup})? onLoggedIn,
+    List<_i16.PageRouteInfo>? children,
   }) : super(
          OnboardingRoute.name,
          args: OnboardingRouteArgs(key: key, onLoggedIn: onLoggedIn),
@@ -233,7 +235,7 @@ class OnboardingRoute extends _i15.PageRouteInfo<OnboardingRouteArgs> {
 
   static const String name = 'OnboardingRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i16.PageInfo page = _i16.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<OnboardingRouteArgs>(
@@ -247,9 +249,9 @@ class OnboardingRoute extends _i15.PageRouteInfo<OnboardingRouteArgs> {
 class OnboardingRouteArgs {
   const OnboardingRouteArgs({this.key, this.onLoggedIn});
 
-  final _i17.Key? key;
+  final _i18.Key? key;
 
-  final _i18.Future<void> Function({bool isFromSignup})? onLoggedIn;
+  final _i19.Future<void> Function({bool isFromSignup})? onLoggedIn;
 
   @override
   String toString() {
@@ -269,11 +271,11 @@ class OnboardingRouteArgs {
 
 /// generated route for
 /// [_i11.ProfileScreen]
-class ProfileRoute extends _i15.PageRouteInfo<ProfileRouteArgs> {
+class ProfileRoute extends _i16.PageRouteInfo<ProfileRouteArgs> {
   ProfileRoute({
-    _i17.Key? key,
-    _i17.VoidCallback? onProfileCompleted,
-    List<_i15.PageRouteInfo>? children,
+    _i18.Key? key,
+    _i18.VoidCallback? onProfileCompleted,
+    List<_i16.PageRouteInfo>? children,
   }) : super(
          ProfileRoute.name,
          args: ProfileRouteArgs(
@@ -285,7 +287,7 @@ class ProfileRoute extends _i15.PageRouteInfo<ProfileRouteArgs> {
 
   static const String name = 'ProfileRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i16.PageInfo page = _i16.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<ProfileRouteArgs>(
@@ -302,9 +304,9 @@ class ProfileRoute extends _i15.PageRouteInfo<ProfileRouteArgs> {
 class ProfileRouteArgs {
   const ProfileRouteArgs({this.key, this.onProfileCompleted});
 
-  final _i17.Key? key;
+  final _i18.Key? key;
 
-  final _i17.VoidCallback? onProfileCompleted;
+  final _i18.VoidCallback? onProfileCompleted;
 
   @override
   String toString() {
@@ -323,12 +325,28 @@ class ProfileRouteArgs {
 }
 
 /// generated route for
-/// [_i12.SignInScreen]
-class SignInRoute extends _i15.PageRouteInfo<SignInRouteArgs> {
+/// [_i12.SettingsScreen]
+class SettingsRoute extends _i16.PageRouteInfo<void> {
+  const SettingsRoute({List<_i16.PageRouteInfo>? children})
+    : super(SettingsRoute.name, initialChildren: children);
+
+  static const String name = 'SettingsRoute';
+
+  static _i16.PageInfo page = _i16.PageInfo(
+    name,
+    builder: (data) {
+      return const _i12.SettingsScreen();
+    },
+  );
+}
+
+/// generated route for
+/// [_i13.SignInScreen]
+class SignInRoute extends _i16.PageRouteInfo<SignInRouteArgs> {
   SignInRoute({
-    _i17.Key? key,
-    _i18.Future<void> Function({bool isFromSignup})? onLoggedIn,
-    List<_i15.PageRouteInfo>? children,
+    _i18.Key? key,
+    _i19.Future<void> Function({bool isFromSignup})? onLoggedIn,
+    List<_i16.PageRouteInfo>? children,
   }) : super(
          SignInRoute.name,
          args: SignInRouteArgs(key: key, onLoggedIn: onLoggedIn),
@@ -337,13 +355,13 @@ class SignInRoute extends _i15.PageRouteInfo<SignInRouteArgs> {
 
   static const String name = 'SignInRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i16.PageInfo page = _i16.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<SignInRouteArgs>(
         orElse: () => const SignInRouteArgs(),
       );
-      return _i12.SignInScreen(key: args.key, onLoggedIn: args.onLoggedIn);
+      return _i13.SignInScreen(key: args.key, onLoggedIn: args.onLoggedIn);
     },
   );
 }
@@ -351,9 +369,9 @@ class SignInRoute extends _i15.PageRouteInfo<SignInRouteArgs> {
 class SignInRouteArgs {
   const SignInRouteArgs({this.key, this.onLoggedIn});
 
-  final _i17.Key? key;
+  final _i18.Key? key;
 
-  final _i18.Future<void> Function({bool isFromSignup})? onLoggedIn;
+  final _i19.Future<void> Function({bool isFromSignup})? onLoggedIn;
 
   @override
   String toString() {
@@ -372,12 +390,12 @@ class SignInRouteArgs {
 }
 
 /// generated route for
-/// [_i13.SignUpScreen]
-class SignUpRoute extends _i15.PageRouteInfo<SignUpRouteArgs> {
+/// [_i14.SignUpScreen]
+class SignUpRoute extends _i16.PageRouteInfo<SignUpRouteArgs> {
   SignUpRoute({
-    _i17.Key? key,
-    _i18.Future<void> Function({bool isFromSignup})? onLoggedIn,
-    List<_i15.PageRouteInfo>? children,
+    _i18.Key? key,
+    _i19.Future<void> Function({bool isFromSignup})? onLoggedIn,
+    List<_i16.PageRouteInfo>? children,
   }) : super(
          SignUpRoute.name,
          args: SignUpRouteArgs(key: key, onLoggedIn: onLoggedIn),
@@ -386,13 +404,13 @@ class SignUpRoute extends _i15.PageRouteInfo<SignUpRouteArgs> {
 
   static const String name = 'SignUpRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i16.PageInfo page = _i16.PageInfo(
     name,
     builder: (data) {
       final args = data.argsAs<SignUpRouteArgs>(
         orElse: () => const SignUpRouteArgs(),
       );
-      return _i13.SignUpScreen(key: args.key, onLoggedIn: args.onLoggedIn);
+      return _i14.SignUpScreen(key: args.key, onLoggedIn: args.onLoggedIn);
     },
   );
 }
@@ -400,9 +418,9 @@ class SignUpRoute extends _i15.PageRouteInfo<SignUpRouteArgs> {
 class SignUpRouteArgs {
   const SignUpRouteArgs({this.key, this.onLoggedIn});
 
-  final _i17.Key? key;
+  final _i18.Key? key;
 
-  final _i18.Future<void> Function({bool isFromSignup})? onLoggedIn;
+  final _i19.Future<void> Function({bool isFromSignup})? onLoggedIn;
 
   @override
   String toString() {
@@ -421,17 +439,17 @@ class SignUpRouteArgs {
 }
 
 /// generated route for
-/// [_i14.SplashScreen]
-class SplashRoute extends _i15.PageRouteInfo<void> {
-  const SplashRoute({List<_i15.PageRouteInfo>? children})
+/// [_i15.SplashScreen]
+class SplashRoute extends _i16.PageRouteInfo<void> {
+  const SplashRoute({List<_i16.PageRouteInfo>? children})
     : super(SplashRoute.name, initialChildren: children);
 
   static const String name = 'SplashRoute';
 
-  static _i15.PageInfo page = _i15.PageInfo(
+  static _i16.PageInfo page = _i16.PageInfo(
     name,
     builder: (data) {
-      return const _i14.SplashScreen();
+      return const _i15.SplashScreen();
     },
   );
 }

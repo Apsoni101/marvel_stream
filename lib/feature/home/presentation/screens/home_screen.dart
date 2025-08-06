@@ -1,8 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marvel_stream/core/constants/app_strings.dart';
-import 'package:marvel_stream/core/di/app_injector.dart';
+import 'package:marvel_stream/core/extensions/localization_extension.dart';import 'package:marvel_stream/core/di/app_injector.dart';
 import 'package:marvel_stream/core/enums/movies_section_type.dart';
 import 'package:marvel_stream/core/enums/section_status.dart';
 import 'package:marvel_stream/core/navigation/app_router.gr.dart';
@@ -44,28 +43,28 @@ class HomeScreen extends StatelessWidget {
         children: <Widget>[
           _buildSection(
             context: context,
-            title: AppStrings.upcomingMovies,
+            title: context.locale.upcomingMovies,
             sectionId: MovieSectionId.upcoming,
             sectionState: state.latestMovies,
             layout: MovieSectionType.carousel,
           ),
           _buildSection(
             context: context,
-            title: AppStrings.trendingNow,
+            title: context.locale.trendingNow,
             sectionId: MovieSectionId.trending,
             sectionState: state.trendingMovies,
             layout: MovieSectionType.carousel,
           ),
           _buildSection(
             context: context,
-            title: AppStrings.oldMovies,
+            title: context.locale.oldMovies,
             sectionId: MovieSectionId.old,
             sectionState: state.oldMovies,
             layout: MovieSectionType.horizontal,
           ),
           _buildSection(
             context: context,
-            title: AppStrings.allMoviesCollection,
+            title: context.locale.allMoviesCollection,
             sectionId: MovieSectionId.all,
             sectionState: state.allMovies,
             layout: MovieSectionType.grid,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_stream/core/constants/app_colors.dart';
 import 'package:marvel_stream/core/constants/app_textstyles.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
 
 class SignupLoginButton extends StatelessWidget {
   const SignupLoginButton({
@@ -9,10 +9,12 @@ class SignupLoginButton extends StatelessWidget {
     super.key,
     this.backgroundColor,
     this.side,
+    this.textColor,
   });
 
   final VoidCallback onPressed;
   final Color? backgroundColor;
+  final Color? textColor;
   final BorderSide? side;
   final String text;
 
@@ -21,10 +23,15 @@ class SignupLoginButton extends StatelessWidget {
     onPressed: onPressed,
     style: ElevatedButton.styleFrom(
       shape: const RoundedRectangleBorder(),
-      backgroundColor: backgroundColor ?? AppColors.red,
+      backgroundColor: backgroundColor ?? context.appColors.red,
       side: side,
       padding: const EdgeInsets.symmetric(vertical: 14, horizontal: 108),
     ),
-    child: Text(text, style: AppTextStyles.continueTxtStyle),
+    child: Text(
+      text,
+      style: AppTextStyles.continueTxtStyle.copyWith(
+        color: textColor ?? context.appColors.permanentWhite,
+      ),
+    ),
   );
 }
