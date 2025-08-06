@@ -12,5 +12,6 @@ class RoutePaths{
   static const String characters = 'characters';
   static const String auth = '/auth';
   static const String movieDetail = 'movie-detail';
+  static const String settings = 'settings';
 
 }

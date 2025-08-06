@@ -1,7 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:marvel_stream/core/constants/app_strings.dart';
+import 'package:marvel_stream/core/enums/character_section_id.dart';
+import 'package:marvel_stream/core/extensions/localization_extension.dart';
 import 'package:marvel_stream/core/di/app_injector.dart';
 import 'package:marvel_stream/core/enums/character_section_type.dart';
 import 'package:marvel_stream/core/enums/section_status.dart';
@@ -14,7 +15,6 @@ import 'package:marvel_stream/feature/common/presentation/widgets/generic_carous
 import 'package:marvel_stream/feature/common/presentation/widgets/horizontal_listview_section.dart';
 import 'package:marvel_stream/feature/common/presentation/widgets/masonry_gridview_section.dart';
 import 'package:marvel_stream/feature/home/presentation/widgets/home_screen_app_bar.dart';
-
 
 @RoutePage()
 class CharactersScreen extends StatelessWidget {
@@ -47,51 +47,59 @@ class CharactersScreen extends StatelessWidget {
     children: <Widget>[
       _buildSection(
         context: context,
-        title: AppStrings.featuredCharacters,
+        title: context.locale.featuredCharacters,
         sectionState: state.featuredCharacters,
         type: CharacterSectionType.carousel,
+        sectionId: CharacterSectionId.featured,
       ),
       _buildSection(
         context: context,
-        title: AppStrings.classicCharacters,
+        title: context.locale.classicCharacters,
         sectionState: state.classicCharacters,
         type: CharacterSectionType.grid,
+        sectionId: CharacterSectionId.classic,
       ),
       _buildSection(
         context: context,
-        title: AppStrings.avengersCharacters,
+        title: context.locale.avengersCharacters,
         sectionState: state.avengersCharacters,
         type: CharacterSectionType.horizontal,
+        sectionId: CharacterSectionId.avengers,
       ),
       _buildSection(
         context: context,
-        title: AppStrings.spiderVerseCharacters,
+        title: context.locale.spiderVerseCharacters,
         sectionState: state.spiderVerseCharacters,
         type: CharacterSectionType.grid,
+        sectionId: CharacterSectionId.spiderVerse,
       ),
       _buildSection(
         context: context,
-        title: AppStrings.xMenCharacters,
+        title: context.locale.xMenCharacters,
         sectionState: state.xMenCharacters,
         type: CharacterSectionType.horizontal,
+        sectionId: CharacterSectionId.xMen,
       ),
       _buildSection(
         context: context,
-        title: AppStrings.hulkFamilyCharacters,
+        title: context.locale.hulkFamilyCharacters,
         sectionState: state.hulkCharacters,
         type: CharacterSectionType.grid,
+        sectionId: CharacterSectionId.hulkFamily,
       ),
       _buildSection(
         context: context,
-        title: AppStrings.guardiansCharacters,
+        title: context.locale.guardiansCharacters,
         sectionState: state.guardiansCharacters,
         type: CharacterSectionType.horizontal,
+        sectionId: CharacterSectionId.guardians,
       ),
       _buildSection(
         context: context,
-        title: AppStrings.aToZCharacters,
+        title: context.locale.aToZCharacters,
         sectionState: state.aToZCharacters,
         type: CharacterSectionType.grid,
+        sectionId: CharacterSectionId.aToZ,
       ),
     ],
   );
@@ -102,6 +110,7 @@ class CharactersScreen extends StatelessWidget {
     required final String title,
     required final SectionState<CharacterEntity> sectionState,
     required final CharacterSectionType type,
+    required final CharacterSectionId sectionId,
   }) {
     switch (sectionState.status) {
       case SectionStatus.initial:
@@ -115,34 +124,26 @@ class CharactersScreen extends StatelessWidget {
           title,
           sectionState.errorMessage ?? 'Unknown error',
           isCarousel: type == CharacterSectionType.carousel,
-          retryEvent: switch (type) {
-            CharacterSectionType.carousel =>
-                const FetchFeaturedCharacters(limit: 10),
-            CharacterSectionType.grid => switch (title) {
-              AppStrings.classicCharacters =>
-                  const FetchClassicCharacters(limit: 10),
-              AppStrings.spiderVerseCharacters =>
-                  const FetchSpiderVerseCharacters(limit: 10),
-              AppStrings.hulkFamilyCharacters =>
-                  const FetchHulkCharacters(limit: 10),
-              AppStrings.aToZCharacters =>
-                  const FetchAToZCharacters(limit: 100),
-              _ => const FetchCharacterLists(),
-            },
-            CharacterSectionType.horizontal => switch (title) {
-              AppStrings.avengersCharacters =>
-                  const FetchAvengersCharacters(limit: 10),
-              AppStrings.xMenCharacters =>
-                  const FetchXMenCharacters(limit: 10),
-              AppStrings.guardiansCharacters =>
-                  const FetchGuardiansCharacters(limit: 10),
-              _ => const FetchCharacterLists(),
-            },
-          },
+          retryEvent: _getRetryEventForSection(sectionId),
         );
     }
   }
 
+  /// Helper method to determine the retry event based on section ID
+  CharactersEvent _getRetryEventForSection(
+    final CharacterSectionId sectionId,
+  ) => switch (sectionId) {
+    CharacterSectionId.featured => const FetchFeaturedCharacters(limit: 10),
+    CharacterSectionId.classic => const FetchClassicCharacters(limit: 10),
+    CharacterSectionId.avengers => const FetchAvengersCharacters(limit: 10),
+    CharacterSectionId.spiderVerse => const FetchSpiderVerseCharacters(
+      limit: 10,
+    ),
+    CharacterSectionId.xMen => const FetchXMenCharacters(limit: 10),
+    CharacterSectionId.hulkFamily => const FetchHulkCharacters(limit: 10),
+    CharacterSectionId.guardians => const FetchGuardiansCharacters(limit: 10),
+    CharacterSectionId.aToZ => const FetchAToZCharacters(limit: 100),
+  };
 
   /// Returns the loading (shimmer) variant for the given type.
   Widget _buildLoadingSection(
@@ -222,20 +223,19 @@ class CharactersScreen extends StatelessWidget {
 
   /// Error UI (same as your existing implementation).
   Widget _buildErrorSection(
-      final BuildContext context,
-      final String title,
-      final String errorMessage, {
-        required final CharactersEvent retryEvent,
-        final bool isCarousel = false,
-      }) =>
-      ErrorSectionWidget(
-        title: title,
-        errorMessage: errorMessage,
-        isCarousel: isCarousel,
-        onRetry: () {
-          context.read<CharactersBloc>().add(retryEvent);
-        },
-      );
+    final BuildContext context,
+    final String title,
+    final String errorMessage, {
+    required final CharactersEvent retryEvent,
+    final bool isCarousel = false,
+  }) => ErrorSectionWidget(
+    title: title,
+    errorMessage: errorMessage,
+    isCarousel: isCarousel,
+    onRetry: () {
+      context.read<CharactersBloc>().add(retryEvent);
+    },
+  );
 
   void _handleCharacterTap(final CharacterEntity character) {
     debugPrint('Character tapped: ${character.name}');

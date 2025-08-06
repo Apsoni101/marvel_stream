@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_stream/core/constants/app_colors.dart';
 import 'package:marvel_stream/core/constants/app_textstyles.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
 
 class CustomTextField extends StatelessWidget {
   const CustomTextField({
     required this.labelText,
-     required this.controller, this.errorText, this.obscureText = false,
+    required this.controller,
+    this.errorText,
+    this.obscureText = false,
     super.key,
     this.onChanged,
   });
@@ -24,15 +26,19 @@ class CustomTextField extends StatelessWidget {
     decoration: InputDecoration(
       contentPadding: const EdgeInsets.symmetric(horizontal: 12, vertical: 16),
       filled: true,
-      fillColor: AppColors.white,
+      fillColor: context.appColors.permanentWhite,
       labelText: labelText,
       errorText: errorText,
-      labelStyle: AppTextStyles.hintTxtStyle,
+      labelStyle: AppTextStyles.hintTxtStyle.copyWith(
+        color: context.appColors.permanentBlack,
+      ),
       border: const OutlineInputBorder(),
-      focusedBorder: const OutlineInputBorder(
-        borderSide: BorderSide(color: AppColors.red,width: 2),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(color: context.appColors.red, width: 2),
       ),
     ),
-    style: AppTextStyles.hintTxtStyle,
+    style: AppTextStyles.hintTxtStyle.copyWith(
+      color: context.appColors.permanentBlack50,
+    ),
   );
 }

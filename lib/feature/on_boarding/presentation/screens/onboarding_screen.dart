@@ -1,10 +1,10 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:marvel_stream/core/constants/app_colors.dart';
-import 'package:marvel_stream/core/constants/app_strings.dart';
+import 'package:marvel_stream/core/extensions/localization_extension.dart';
 import 'package:marvel_stream/core/constants/asset_constants.dart';
 import 'package:marvel_stream/core/controller/onboarding_page_controller.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
 import 'package:marvel_stream/feature/on_boarding/presentation/widgets/background_image_foreground_text_widget.dart';
 import 'package:marvel_stream/feature/on_boarding/presentation/widgets/onboarding_bottom_buttons.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -23,7 +23,6 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   final PageController _controller = PageController();
   final OnboardingPageController _onboardingPageController =
       OnboardingPageController();
-
 
   Future<void> _goToNextPage() async {
     if (_onboardingPageController.value < 5) {
@@ -50,30 +49,30 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
         child: PageView(
           physics: const NeverScrollableScrollPhysics(),
           controller: _controller,
-          children: const <Widget>[
+          children: <Widget>[
             BackgroundImageForegroundTextWidget(
               image: AppAssets.onboarding1,
-              text: AppStrings.onboardingTxt1,
+              text: context.locale.onboardingTxt1,
             ),
             BackgroundImageForegroundTextWidget(
               image: AppAssets.onboarding2,
-              text: AppStrings.onboardingTxt2,
+              text: context.locale.onboardingTxt2,
             ),
             BackgroundImageForegroundTextWidget(
               image: AppAssets.onboarding3,
-              text: AppStrings.onboardingTxt3,
+              text: context.locale.onboardingTxt3,
             ),
             BackgroundImageForegroundTextWidget(
               image: AppAssets.onboarding4,
-              text: AppStrings.onboardingTxt4,
+              text: context.locale.onboardingTxt4,
             ),
             BackgroundImageForegroundTextWidget(
               image: AppAssets.onboarding5,
-              text: AppStrings.getStartedTxt,
+              text: context.locale.getStartedTxt,
             ),
             BackgroundImageForegroundTextWidget(
               image: AppAssets.onboarding6,
-              text: AppStrings.signupOrLogin,
+              text: context.locale.signupOrLogin,
             ),
           ],
         ),
@@ -94,11 +93,11 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                 SmoothPageIndicator(
                   controller: _controller, // PageController
                   count: 6,
-                  effect: const SlideEffect(
+                  effect: SlideEffect(
                     dotHeight: 10,
                     dotWidth: 10,
-                    dotColor: AppColors.white,
-                    activeDotColor: AppColors.red,
+                    dotColor: context.appColors.permanentWhite,
+                    activeDotColor: context.appColors.red,
                   ),
                 ),
               ],

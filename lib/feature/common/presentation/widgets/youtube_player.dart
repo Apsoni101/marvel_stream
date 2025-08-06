@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_stream/core/constants/app_colors.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class YouTubePlayerWidget extends StatefulWidget {
-  const YouTubePlayerWidget({super.key, required this.url});
+  const YouTubePlayerWidget({required this.url, super.key});
+
   final String url;
 
   @override
@@ -19,9 +20,7 @@ class _YouTubePlayerWidgetState extends State<YouTubePlayerWidget> {
     final String videoId = YoutubePlayer.convertUrlToId(widget.url)!;
     _controller = YoutubePlayerController(
       initialVideoId: videoId,
-      flags: const YoutubePlayerFlags(
-        autoPlay: false,
-      ),
+      flags: const YoutubePlayerFlags(autoPlay: false),
     );
   }
 
@@ -33,11 +32,11 @@ class _YouTubePlayerWidgetState extends State<YouTubePlayerWidget> {
 
   @override
   Widget build(final BuildContext context) => AspectRatio(
-      aspectRatio: 16 / 9,
-      child: YoutubePlayer(
-        controller: _controller,
-        showVideoProgressIndicator: true,
-        progressIndicatorColor: AppColors.red,
-      ),
-    );
+    aspectRatio: 16 / 9,
+    child: YoutubePlayer(
+      controller: _controller,
+      showVideoProgressIndicator: true,
+      progressIndicatorColor: context.appColors.red,
+    ),
+  );
 }

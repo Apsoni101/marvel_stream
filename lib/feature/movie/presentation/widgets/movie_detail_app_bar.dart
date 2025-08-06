@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:marvel_stream/core/constants/app_colors.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
+
 
 class MovieDetailAppBar extends StatelessWidget implements PreferredSizeWidget {
   const MovieDetailAppBar({super.key});
@@ -14,10 +15,10 @@ class MovieDetailAppBar extends StatelessWidget implements PreferredSizeWidget {
       elevation: 0,
       leading: IconButton(
         onPressed: () => context.router.pop(),
-        icon: const Icon(
+        icon:  Icon(
           Icons.keyboard_backspace,
           size: 32,
-          color: AppColors.white,
+          color: context.appColors.white,
         ),
       ),
     );

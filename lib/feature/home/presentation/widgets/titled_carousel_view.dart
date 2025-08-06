@@ -1,6 +1,7 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:marvel_stream/core/constants/app_textstyles.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
 
 class TitledCarouselView extends StatelessWidget {
   const TitledCarouselView({
@@ -21,7 +22,9 @@ class TitledCarouselView extends StatelessWidget {
         child: Text(
           title,
           textAlign: TextAlign.start,
-          style: AppTextStyles.sectionTitle,
+          style: AppTextStyles.sectionTitle.copyWith(
+            color: context.appColors.white,
+          ),
         ),
       ),
       SizedBox(

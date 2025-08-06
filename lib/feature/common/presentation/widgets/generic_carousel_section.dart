@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marvel_stream/core/constants/app_textstyles.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
 import 'package:marvel_stream/feature/common/presentation/widgets/generic_carousel.dart';
 
 class GenericCarouselSection<T> extends StatelessWidget {
@@ -11,7 +12,6 @@ class GenericCarouselSection<T> extends StatelessWidget {
     super.key,
     this.heightFactor = 0.22,
     this.isLoading = false,
-
   });
 
   final String title;
@@ -21,7 +21,6 @@ class GenericCarouselSection<T> extends StatelessWidget {
   final double heightFactor;
   final bool isLoading;
 
-
   @override
   Widget build(final BuildContext context) => Column(
     crossAxisAlignment: CrossAxisAlignment.start,
@@ -30,7 +29,9 @@ class GenericCarouselSection<T> extends StatelessWidget {
         padding: const EdgeInsets.all(12),
         child: Text(
           title,
-          style: AppTextStyles.sectionTitle,
+          style: AppTextStyles.sectionTitle.copyWith(
+            color: context.appColors.white,
+          ),
         ),
       ),
       SizedBox(

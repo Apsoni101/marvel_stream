@@ -2,11 +2,10 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:marvel_stream/core/constants/app_colors.dart';
-import 'package:marvel_stream/core/constants/app_strings.dart';
-import 'package:marvel_stream/core/constants/app_textstyles.dart';
+import 'package:marvel_stream/core/extensions/localization_extension.dart';import 'package:marvel_stream/core/constants/app_textstyles.dart';
 import 'package:marvel_stream/core/constants/asset_constants.dart';
 import 'package:marvel_stream/core/di/app_injector.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
 import 'package:marvel_stream/core/navigation/app_router.gr.dart';
 import 'package:marvel_stream/feature/auth/presentation/bloc/login_bloc/login_bloc.dart';
 import 'package:marvel_stream/feature/auth/presentation/widgets/auth_provider_button.dart';
@@ -41,16 +40,16 @@ class _SignInScreenState extends State<SignInScreen> {
     create: (final BuildContext context) => AppInjector.getIt<LoginBloc>(),
     child: Scaffold(
       body: BlocListener<LoginBloc, LoginState>(
-        listener: (final BuildContext context, final LoginState state)  {
+        listener: (final BuildContext context, final LoginState state) {
           if (state is LoginError) {
             ScaffoldMessenger.of(
               context,
             ).showSnackBar(SnackBar(content: Text(state.message)));
           }
           if (state is LoginSuccess) {
-            ScaffoldMessenger.of(
-              context,
-            ).showSnackBar(const SnackBar(content: Text(AppStrings.loginSuccess)));
+            ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(content: Text(context.locale.loginSuccess)),
+            );
             widget.onLoggedIn?.call();
           }
         },
@@ -101,17 +100,17 @@ class _SignInScreenState extends State<SignInScreen> {
                 ),
                 const SizedBox(height: 48),
                 CustomTextField(
-                  labelText: AppStrings.enterEmail,
+                  labelText: context.locale.enterEmail,
                   controller: emailController,
                   onChanged: (final String value) {
                     context.read<LoginBloc>().add(EmailChanged(email: value));
                   },
                   errorText:
-                      data.showEmailError ? AppStrings.emailEmptyError : null,
+                      data.showEmailError ? context.locale.emailEmptyError : null,
                 ),
                 const SizedBox(height: 20),
                 CustomTextField(
-                  labelText: AppStrings.password,
+                  labelText: context.locale.password,
                   controller: passwordController,
                   onChanged: (final String value) {
                     context.read<LoginBloc>().add(
@@ -119,7 +118,9 @@ class _SignInScreenState extends State<SignInScreen> {
                     );
                   },
                   errorText:
-                      data.showPasswordError ? AppStrings.passwordEmptyError : null,
+                      data.showPasswordError
+                          ? context.locale.passwordEmptyError
+                          : null,
                 ),
                 const SizedBox(height: 20),
                 SignupLoginButton(
@@ -132,24 +133,28 @@ class _SignInScreenState extends State<SignInScreen> {
                       ),
                     );
                   },
-                  text: AppStrings.login,
-                  backgroundColor: Colors.transparent,
-                  side: const BorderSide(width: 4, color: AppColors.red),
+                  text: context.locale.login,
+                  textColor: context.appColors.white,
+                  backgroundColor:context.appColors.black,
+                  side: BorderSide(width: 4, color: context.appColors.red),
                 ),
                 ForgotPassword(onPressed: () {}),
                 const SizedBox(height: 20),
                 Text(
                   textAlign: TextAlign.center,
-                  AppStrings.or,
-                  style: AppTextStyles.forgotPasswordTxt.copyWith(fontSize: 20),
+                  context.locale.or,
+                  style: AppTextStyles.forgotPasswordTxt.copyWith(
+                    fontSize: 20,
+                    color: context.appColors.lightGrey,
+                  ),
                 ),
                 const SizedBox(height: 18),
                 Text(
                   textAlign: TextAlign.center,
-                  AppStrings.continueWith,
+                  context.locale.continueWith,
                   style: AppTextStyles.forgotPasswordTxt.copyWith(
                     fontSize: 20,
-                    color: AppColors.white,
+                    color: context.appColors.white,
                   ),
                 ),
                 const SizedBox(height: 14),
@@ -160,7 +165,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     AuthProviderButton(
                       onPressed: () {},
                       asset: AppAssets.facebook,
-                      title: AppStrings.facebook,
+                      title: context.locale.facebook,
                     ),
                     AuthProviderButton(
                       onPressed: () {
@@ -169,7 +174,7 @@ class _SignInScreenState extends State<SignInScreen> {
                         );
                       },
                       asset: AppAssets.google,
-                      title: AppStrings.google,
+                      title: context.locale.google,
                     ),
                   ],
                 ),

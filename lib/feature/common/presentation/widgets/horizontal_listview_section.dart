@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:marvel_stream/core/constants/app_textstyles.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
 import 'package:marvel_stream/feature/common/presentation/widgets/shimmer_effect.dart';
 
 class HorizontalListViewSection<T> extends StatelessWidget {
@@ -40,7 +41,12 @@ class HorizontalListViewSection<T> extends StatelessWidget {
     children: <Widget>[
       Padding(
         padding: const EdgeInsets.all(12),
-        child: Text(title, style: AppTextStyles.sectionTitle),
+        child: Text(
+          title,
+          style: AppTextStyles.sectionTitle.copyWith(
+            color: context.appColors.white,
+          ),
+        ),
       ),
       SizedBox(
         height: MediaQuery.sizeOf(context).height * heightFactor,
@@ -57,7 +63,7 @@ class HorizontalListViewSection<T> extends StatelessWidget {
           },
           separatorBuilder:
               (final BuildContext context, final int index) =>
-              SizedBox(width: itemSpacing),
+                  SizedBox(width: itemSpacing),
         ),
       ),
     ],
@@ -69,33 +75,33 @@ class HorizontalListViewSection<T> extends StatelessWidget {
       onTap: () => onItemTap(item),
       child: AspectRatio(
         aspectRatio: itemAspectRatio,
-        child: url != null
-            ? Image.network(
-          url,
-          fit: BoxFit.cover,
-          width: double.infinity,
-          loadingBuilder: (
-              final BuildContext context,
-              final Widget child,
-              final ImageChunkEvent? progress,
-              ) {
-            if (progress == null) {
-              return child;
-            }
-            return const ShimmerEffect(
-              width: double.infinity,
-              height: double.infinity,
-            );
-          },
-          errorBuilder:
-              (
-              final BuildContext context,
-              final Object error,
-              final StackTrace? stackTrace,
-              ) =>
-          placeholder ?? const Icon(Icons.image_not_supported),
-        )
-            : Center(child: placeholder ?? const Icon(Icons.image)),
+        child:
+            url != null
+                ? Image.network(
+                  url,
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  loadingBuilder: (
+                    final BuildContext context,
+                    final Widget child,
+                    final ImageChunkEvent? progress,
+                  ) {
+                    if (progress == null) {
+                      return child;
+                    }
+                    return const ShimmerEffect(
+                      width: double.infinity,
+                      height: double.infinity,
+                    );
+                  },
+                  errorBuilder:
+                      (
+                        final BuildContext context,
+                        final Object error,
+                        final StackTrace? stackTrace,
+                      ) => placeholder ?? const Icon(Icons.image_not_supported),
+                )
+                : Center(child: placeholder ?? const Icon(Icons.image)),
       ),
     );
   }

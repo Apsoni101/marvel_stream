@@ -1,4 +1,6 @@
 import 'package:get_it/get_it.dart';
+import 'package:marvel_stream/core/controller/language_controller.dart';
+import 'package:marvel_stream/core/controller/theme_controller.dart';
 import 'package:marvel_stream/core/navigation/auth_guard.dart';
 import 'package:marvel_stream/core/services/firebase/crashlytics_service.dart';
 import 'package:marvel_stream/core/services/firebase/firebase_auth_service.dart';
@@ -47,6 +49,11 @@ class AppInjector {
       ..registerLazySingleton(FirebaseAuthService.new)
       ..registerLazySingleton(FirebaseFirestoreService.new)
       ..registerLazySingleton(CrashlyticsService.new)
+      ..registerLazySingleton<ThemeController>(
+            () => ThemeController(getIt<SharedPrefsService>()),
+      ) ..registerLazySingleton<LanguageController>(
+            () => LanguageController(getIt<SharedPrefsService>()),
+      )
       ..registerLazySingleton<ApiClient>(
         ApiClient.marvelMovie,
         instanceName: 'movieClient',

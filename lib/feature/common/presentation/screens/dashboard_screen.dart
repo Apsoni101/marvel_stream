@@ -1,9 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:marvel_stream/core/constants/app_colors.dart';
-import 'package:marvel_stream/core/constants/app_strings.dart';
-import 'package:marvel_stream/core/constants/asset_constants.dart';
+import 'package:marvel_stream/core/extensions/localization_extension.dart';import 'package:marvel_stream/core/constants/asset_constants.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
 import 'package:marvel_stream/core/navigation/app_router.gr.dart';
 
 @RoutePage()
@@ -24,9 +23,9 @@ class DashboardScreen extends StatelessWidget {
           currentIndex: tabsRouter.activeIndex,
           onTap: tabsRouter.setActiveIndex,
           type: BottomNavigationBarType.fixed,
-          selectedItemColor: AppColors.red,
-          unselectedItemColor: AppColors.white,
-          backgroundColor: AppColors.black,
+          selectedItemColor: context.appColors.red,
+          unselectedItemColor: context.appColors.white,
+          backgroundColor: context.appColors.black,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
@@ -34,11 +33,11 @@ class DashboardScreen extends StatelessWidget {
                 width: 24,
                 height: 24,
                 colorFilter: ColorFilter.mode(
-                  tabsRouter.activeIndex == 0 ? AppColors.red : AppColors.white,
+                  tabsRouter.activeIndex == 0 ? context.appColors.red : context.appColors.white,
                   BlendMode.srcIn,
                 ),
               ),
-              label: AppStrings.home,
+              label: context.locale.home,
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
@@ -46,11 +45,11 @@ class DashboardScreen extends StatelessWidget {
                 width: 24,
                 height: 24,
                 colorFilter: ColorFilter.mode(
-                  tabsRouter.activeIndex == 1 ? AppColors.red : AppColors.white,
+                  tabsRouter.activeIndex == 1 ? context.appColors.red : context.appColors.white,
                   BlendMode.srcIn,
                 ),
               ),
-              label: AppStrings.comics,
+              label: context.locale.comics,
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
@@ -58,11 +57,11 @@ class DashboardScreen extends StatelessWidget {
                 width: 24,
                 height: 24,
                 colorFilter: ColorFilter.mode(
-                  tabsRouter.activeIndex == 2 ? AppColors.red : AppColors.white,
+                  tabsRouter.activeIndex == 2 ? context.appColors.red : context.appColors.white,
                   BlendMode.srcIn,
                 ),
               ),
-              label: AppStrings.characters,
+              label: context.locale.characters,
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
@@ -70,11 +69,11 @@ class DashboardScreen extends StatelessWidget {
                 width: 24,
                 height: 24,
                 colorFilter: ColorFilter.mode(
-                  tabsRouter.activeIndex == 3 ? AppColors.red : AppColors.white,
+                  tabsRouter.activeIndex == 3 ? context.appColors.red : context.appColors.white,
                   BlendMode.srcIn,
                 ),
               ),
-              label: AppStrings.news,
+              label: context.locale.news,
             ),
             BottomNavigationBarItem(
               icon: SvgPicture.asset(
@@ -82,11 +81,11 @@ class DashboardScreen extends StatelessWidget {
                 width: 24,
                 height: 24,
                 colorFilter: ColorFilter.mode(
-                  tabsRouter.activeIndex == 4 ? AppColors.red : AppColors.white,
+                  tabsRouter.activeIndex == 4 ? context.appColors.red : context.appColors.white,
                   BlendMode.srcIn,
                 ),
               ),
-              label: AppStrings.more,
+              label: context.locale.more,
             ),
           ],
         ),

@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_stream/core/constants/app_colors.dart';
-import 'package:marvel_stream/core/constants/app_strings.dart';
-import 'package:marvel_stream/core/constants/app_textstyles.dart';
+import 'package:marvel_stream/core/extensions/localization_extension.dart';import 'package:marvel_stream/core/constants/app_textstyles.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
 
 class DontHaveAnAccountButton extends StatelessWidget {
   const DontHaveAnAccountButton({required this.onPressed, super.key});
@@ -13,20 +12,20 @@ class DontHaveAnAccountButton extends StatelessWidget {
     mainAxisAlignment: MainAxisAlignment.center,
     children: <Widget>[
       Text(
-        AppStrings.dontHaveAnAccount,
+        context.locale.dontHaveAnAccount,
         style: AppTextStyles.forgotPasswordTxt.copyWith(
           fontSize: 13,
-          color: AppColors.lightGrey,
+          color: context.appColors.lightGrey,
         ),
       ),
       TextButton(
         onPressed: onPressed,
         style: TextButton.styleFrom(padding: EdgeInsets.zero),
         child: Text(
-          AppStrings.signup,
+          context.locale.signup,
           style: AppTextStyles.forgotPasswordTxt.copyWith(
             fontSize: 13,
-            color: AppColors.red,
+            color: context.appColors.red,
           ),
         ),
       ),

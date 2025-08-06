@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
-import 'package:marvel_stream/core/constants/app_colors.dart';
 import 'package:marvel_stream/core/constants/app_textstyles.dart';
 import 'package:marvel_stream/core/constants/asset_constants.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
 import 'package:marvel_stream/feature/common/presentation/widgets/shimmer_effect.dart';
 
 class MasonryGridViewItemSection<T> extends StatelessWidget {
@@ -48,7 +48,12 @@ class MasonryGridViewItemSection<T> extends StatelessWidget {
       children: <Widget>[
         Padding(
           padding: const EdgeInsets.all(12),
-          child: Text(title, style: AppTextStyles.sectionTitle),
+          child: Text(
+            title,
+            style: AppTextStyles.sectionTitle.copyWith(
+              color: context.appColors.white,
+            ),
+          ),
         ),
         MasonryGridView.count(
           padding: padding,
@@ -65,7 +70,7 @@ class MasonryGridViewItemSection<T> extends StatelessWidget {
             final T item = items[index];
             return GestureDetector(
               onTap: () => onItemTap(item),
-              child: _buildCard(item),
+              child: _buildCard(item, context),
             );
           },
         ),
@@ -73,7 +78,7 @@ class MasonryGridViewItemSection<T> extends StatelessWidget {
     );
   }
 
-  Widget _buildCard(final T item) => ClipRRect(
+  Widget _buildCard(final T item, final BuildContext context) => ClipRRect(
     borderRadius: BorderRadius.circular(borderRadius),
     child:
         coverImageUrlGetter(item) != null
@@ -103,16 +108,18 @@ class MasonryGridViewItemSection<T> extends StatelessWidget {
                     final BuildContext context,
                     final Object error,
                     final StackTrace? stackTrace,
-                  ) => _buildPlaceholder(),
+                  ) => _buildPlaceholder(context),
             )
-            : _buildPlaceholder(),
+            : _buildPlaceholder(context),
   );
 
-  Widget _buildPlaceholder() => AspectRatio(
+  Widget _buildPlaceholder(final BuildContext context) => AspectRatio(
     aspectRatio: placeholderAspectRatio,
-    child: const ColoredBox(
-      color: AppColors.lightGrey,
-      child: Center(child: Icon(Icons.movie, size: 40, color: AppColors.white)),
+    child: ColoredBox(
+      color: context.appColors.lightGrey,
+      child: Center(
+        child: Icon(Icons.movie, size: 40, color: context.appColors.white),
+      ),
     ),
   );
 

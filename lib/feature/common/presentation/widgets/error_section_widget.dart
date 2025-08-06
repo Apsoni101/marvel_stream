@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_stream/core/constants/app_colors.dart';
 import 'package:marvel_stream/core/constants/app_textstyles.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
 
 class ErrorSectionWidget extends StatefulWidget {
   const ErrorSectionWidget({
@@ -62,19 +62,24 @@ class _ErrorSectionWidgetState extends State<ErrorSectionWidget>
     shrinkWrap: true,
     padding: const EdgeInsets.all(18),
     children: <Widget>[
-      Text(widget.title, style: AppTextStyles.sectionTitle),
+      Text(
+        widget.title,
+        style: AppTextStyles.sectionTitle.copyWith(
+          color: context.appColors.white,
+        ),
+      ),
       const SizedBox(height: 12),
-      const Icon(Icons.error_outline, color: AppColors.red, size: 32),
+      Icon(Icons.error_outline, color: context.appColors.red, size: 32),
       const SizedBox(height: 8),
       Text(
         textAlign: TextAlign.center,
         'Error loading ${widget.title}',
-        style: AppTextStyles.overviewTxt.copyWith(color: AppColors.red),
+        style: AppTextStyles.overviewTxt.copyWith(color: context.appColors.red),
       ),
       const SizedBox(height: 4),
       Text(
         widget.errorMessage,
-        style: AppTextStyles.overviewTxt.copyWith(color: AppColors.red),
+        style: AppTextStyles.overviewTxt.copyWith(color: context.appColors.red),
         textAlign: TextAlign.center,
         maxLines: 2,
         overflow: TextOverflow.ellipsis,
@@ -87,7 +92,7 @@ class _ErrorSectionWidgetState extends State<ErrorSectionWidget>
                   ? _controller
                   : const AlwaysStoppedAnimation<double>(0),
           child: IconButton(
-            icon: const Icon(Icons.refresh, color: AppColors.red),
+            icon: Icon(Icons.refresh, color: context.appColors.red),
             onPressed: _handleTap,
           ),
         ),

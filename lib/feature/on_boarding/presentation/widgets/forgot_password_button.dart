@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:marvel_stream/core/constants/app_strings.dart';
-import 'package:marvel_stream/core/constants/app_textstyles.dart';
+import 'package:marvel_stream/core/extensions/localization_extension.dart';import 'package:marvel_stream/core/constants/app_textstyles.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
 
 class ForgotPassword extends StatelessWidget {
   const ForgotPassword({required this.onPressed, super.key});
@@ -11,10 +11,12 @@ class ForgotPassword extends StatelessWidget {
   Widget build(final BuildContext context) => TextButton(
     onPressed: onPressed,
     style: const ButtonStyle(alignment: Alignment.centerRight),
-    child: const Text(
+    child: Text(
       textAlign: TextAlign.end,
-      AppStrings.forgotPassword,
-      style: AppTextStyles.forgotPasswordTxt,
+      context.locale.forgotPassword,
+      style: AppTextStyles.forgotPasswordTxt.copyWith(
+        color: context.appColors.permanentBlack50,
+      ),
     ),
   );
 }

@@ -2,18 +2,17 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:marvel_stream/core/constants/app_colors.dart';
-import 'package:marvel_stream/core/constants/app_strings.dart';
-import 'package:marvel_stream/core/constants/app_textstyles.dart';
+import 'package:marvel_stream/core/extensions/localization_extension.dart';import 'package:marvel_stream/core/constants/app_textstyles.dart';
 import 'package:marvel_stream/core/constants/asset_constants.dart';
 import 'package:marvel_stream/core/di/app_injector.dart';
+import 'package:marvel_stream/core/extensions/color_extension.dart';
 import 'package:marvel_stream/core/navigation/app_router.gr.dart';
 import 'package:marvel_stream/feature/auth/presentation/bloc/signup_bloc/signup_bloc.dart';
 import 'package:marvel_stream/feature/auth/presentation/widgets/already_have_account_button.dart';
 import 'package:marvel_stream/feature/auth/presentation/widgets/auth_provider_button.dart';
 import 'package:marvel_stream/feature/auth/presentation/widgets/custom_textfield.dart';
-import 'package:marvel_stream/feature/on_boarding/presentation/widgets/forgot_password_button.dart';
 import 'package:marvel_stream/feature/common/presentation/widgets/signup_login_button.dart';
+import 'package:marvel_stream/feature/on_boarding/presentation/widgets/forgot_password_button.dart';
 
 @RoutePage()
 class SignUpScreen extends StatefulWidget {
@@ -101,7 +100,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 const SizedBox(height: 48),
                 CustomTextField(
-                  labelText: AppStrings.enterEmail,
+                  labelText: context.locale.enterEmail,
                   controller: emailController,
                   onChanged: (final String value) {
                     context.read<SignupBloc>().add(EmailChanged(email: value));
@@ -111,7 +110,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 const SizedBox(height: 20),
                 CustomTextField(
-                  labelText: AppStrings.password,
+                  labelText: context.locale.password,
                   controller: passwordController,
                   onChanged: (final String value) {
                     context.read<SignupBloc>().add(
@@ -132,24 +131,28 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                     );
                   },
-                  text: AppStrings.signup,
-                  backgroundColor: Colors.transparent,
-                  side: const BorderSide(width: 4, color: AppColors.red),
+                  text: context.locale.signup,
+                  textColor: context.appColors.white,
+                  backgroundColor:context.appColors.black,
+                  side: BorderSide(width: 4, color: context.appColors.red),
                 ),
                 ForgotPassword(onPressed: () {}),
                 const SizedBox(height: 20),
                 Text(
                   textAlign: TextAlign.center,
-                  AppStrings.or,
-                  style: AppTextStyles.forgotPasswordTxt.copyWith(fontSize: 20),
+                  context.locale.or,
+                  style: AppTextStyles.forgotPasswordTxt.copyWith(
+                    fontSize: 20,
+                    color: context.appColors.black50,
+                  ),
                 ),
                 const SizedBox(height: 18),
                 Text(
                   textAlign: TextAlign.center,
-                  AppStrings.continueWith,
+                  context.locale.continueWith,
                   style: AppTextStyles.forgotPasswordTxt.copyWith(
                     fontSize: 20,
-                    color: AppColors.white,
+                    color: context.appColors.white,
                   ),
                 ),
                 const SizedBox(height: 14),
@@ -160,19 +163,19 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     AuthProviderButton(
                       onPressed: () {},
                       asset: AppAssets.facebook,
-                      title: AppStrings.facebook,
+                      title: context.locale.facebook,
                     ),
                     AuthProviderButton(
                       onPressed: () {},
                       asset: AppAssets.google,
-                      title: AppStrings.google,
+                      title: context.locale.google,
                     ),
                   ],
                 ),
                 const SizedBox(height: 20),
                 AlreadyHaveAccountButton(
                   onPressed: () async {
-                    await context.router.replace( SignInRoute());
+                    await context.router.replace(SignInRoute());
                   },
                 ),
               ],
